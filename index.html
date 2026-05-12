@@ -499,13 +499,45 @@
   }
 
   /* ── TESTE ── */
+  .test-progress-wrap {
+    margin-bottom: 20px;
+  }
+  .test-progress-info {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 8px;
+  }
+  .test-progress-label {
+    font-size: 13px; font-weight: 500; color: var(--text-secondary);
+  }
+  .test-progress-score {
+    font-size: 13px; font-weight: 600; color: var(--accent-blue);
+  }
+  .test-progress-bar {
+    height: 6px; background: var(--border);
+    border-radius: 3px; overflow: hidden;
+  }
+  .test-progress-fill {
+    height: 100%; border-radius: 3px;
+    background: var(--accent-blue);
+    transition: width 0.4s ease;
+  }
+
   .test-question {
-    margin-bottom: 24px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    animation: slideIn 0.3s ease;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(16px); }
+    to { opacity: 1; transform: translateX(0); }
   }
   .test-q-text {
-    font-size: 16px; font-weight: 600;
+    font-size: 17px; font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 14px; line-height: 1.5;
+    margin-bottom: 18px; line-height: 1.5;
     letter-spacing: -0.2px;
   }
   .test-options { display: flex; flex-direction: column; gap: 8px; }
@@ -524,28 +556,66 @@
   .test-option:hover { border-color: var(--accent-blue); background: var(--accent-blue-soft); }
   .test-option.correct { border-color: var(--geografie); background: var(--geografie-soft); color: var(--geografie); }
   .test-option.wrong { border-color: #ff3b30; background: #fff5f5; color: #ff3b30; }
+  .test-option:disabled { cursor: default; }
 
-  .test-submit {
-    padding: 13px 28px;
-    border-radius: 20px;
+  .test-next-btn {
+    width: 100%; margin-top: 14px;
+    padding: 14px;
+    border-radius: var(--radius-sm);
     background: var(--accent-blue);
     color: white; border: none;
     font-size: 15px; font-weight: 600;
     cursor: pointer; font-family: var(--font);
     transition: background 0.2s;
-    margin-top: 8px;
+    display: none;
   }
-  .test-submit:hover { background: #0077ed; }
+  .test-next-btn:hover { background: #0077ed; }
+  .test-next-btn.visible { display: block; }
 
-  .test-result {
-    padding: 20px;
-    border-radius: var(--radius-sm);
-    text-align: center;
-    margin-top: 20px; display: none;
+  /* ── CELEBRATION ── */
+  .test-celebration {
+    display: none; text-align: center;
+    padding: 32px 20px; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
   }
-  .test-result.show { display: block; }
-  .test-result h3 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
-  .test-result p { font-size: 15px; color: var(--text-secondary); }
+  .test-celebration.show { display: block; }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .guinea-pigs {
+    font-size: 52px; letter-spacing: 4px; margin-bottom: 16px;
+    animation: bounce 0.8s ease infinite alternate;
+  }
+  @keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-8px); }
+  }
+  .celebration-title {
+    font-size: 28px; font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.5px; margin-bottom: 8px;
+  }
+  .celebration-score {
+    font-size: 42px; font-weight: 700;
+    color: var(--accent-blue); letter-spacing: -1px;
+    margin-bottom: 8px;
+  }
+  .celebration-msg {
+    font-size: 15px; color: var(--text-secondary);
+    margin-bottom: 24px; line-height: 1.5;
+  }
+  .test-retry-btn {
+    padding: 13px 28px;
+    border-radius: 20px;
+    background: var(--text-primary);
+    color: white; border: none;
+    font-size: 15px; font-weight: 600;
+    cursor: pointer; font-family: var(--font);
+    transition: background 0.2s;
+  }
+  .test-retry-btn:hover { background: #333; }
+
+  .test-result { display: none; }
 
   /* ── VIDEO ── */
   .video-grid { display: flex; flex-direction: column; gap: 10px; }
@@ -676,11 +746,11 @@
         <div class="stat-label">Materii</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" id="stat-files">0</div>
+        <div class="stat-number" id="stat-files">5</div>
         <div class="stat-label">Fișe</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" id="stat-tests">4</div>
+        <div class="stat-number" id="stat-tests">13</div>
         <div class="stat-label">Teste</div>
       </div>
     </div>
@@ -735,7 +805,7 @@
 
       <!-- FIȘE -->
       <div class="tab-content active" id="tab-fise">
-        <div class="notice">💡 <strong>Cum adaugi fișe:</strong> Încarcă PDF-urile sau fișierele în Google Drive, copiază linkul și adaugă-l mai jos.</div>
+        <div class="notice">💡 <strong>Cum adaugi fișe:</strong> Încarcă PDF-urile în Google Drive, copiază linkul și trimite-mi-l mie să îl adaug.</div>
         <div class="upload-zone" onclick="alert('Funcție disponibilă după publicare pe site. Adaugă linkuri Google Drive mai jos.')">
           <div class="upload-icon">📤</div>
           <div class="upload-text">Adaugă o fișă nouă</div>
@@ -746,7 +816,26 @@
 
       <!-- TESTE -->
       <div class="tab-content" id="tab-teste">
-        <div id="test-container"></div>
+        <div id="test-container">
+          <div class="test-progress-wrap">
+            <div class="test-progress-info">
+              <span class="test-progress-label" id="test-progress-label">Întrebarea 1 din 13</span>
+              <span class="test-progress-score" id="test-progress-score">0 corecte</span>
+            </div>
+            <div class="test-progress-bar">
+              <div class="test-progress-fill" id="test-progress-fill" style="width:0%"></div>
+            </div>
+          </div>
+          <div id="test-q-wrap"></div>
+          <button class="test-next-btn" id="test-next-btn" onclick="nextQuestion()">Următoarea întrebare →</button>
+          <div class="test-celebration" id="test-celebration">
+            <div class="guinea-pigs">🐹🐹🐹</div>
+            <div class="celebration-title">Bravo, Ada! 🌟</div>
+            <div class="celebration-score" id="celebration-score"></div>
+            <div class="celebration-msg" id="celebration-msg"></div>
+            <button class="test-retry-btn" onclick="restartTest()">Încearcă din nou</button>
+          </div>
+        </div>
       </div>
 
       <!-- FLASH CARDS -->
@@ -767,7 +856,7 @@
 
 <script>
 // ══════════ AUTH ══════════
-const USERS = { ada: 'clasa4' };
+const USERS = { ada: 'oreo' };
 
 function tryLogin() {
   const u = document.getElementById('username').value.trim().toLowerCase();
@@ -800,83 +889,83 @@ const SUBJECTS = {
     name: 'Istorie', icon: '🏛️',
     color: 'var(--istorie)', soft: 'var(--istorie-soft)',
     fise: [
-      { name: 'Unirea Principatelor Române', meta: 'PDF · Lecția 3', link: '#' },
-      { name: 'Regele Mihai I', meta: 'PDF · Lecția 7', link: '#' },
+      { name: 'Mircea cel Bătrân — Domnitorul Țării Românești', meta: 'Tablă · 17.03.2026', link: '#' },
+      { name: 'Vlad Țepeș — Domnitorul Țării Românești', meta: 'Tablă · 24.03.2026', link: '#' },
+      { name: 'Iancu de Hunedoara', meta: 'Tablă · 31.03.2026', link: '#' },
+      { name: 'Ștefan cel Mare — Domnitorul Moldovei', meta: 'Tablă · 21.04.2026', link: '#' },
+      { name: 'Mihai Viteazul — Prima Unire', meta: 'Tablă · 05.05.2026 + 12.05.2026', link: '#' },
     ],
     flashcards: [
-      { q: 'Când a avut loc Unirea Principatelor Române?', a: '24 ianuarie 1859' },
-      { q: 'Cine a fost Alexandru Ioan Cuza?', a: 'Primul domnitor al Principatelor Unite' },
-      { q: 'Ce eveniment a avut loc în 1918?', a: 'Marea Unire — unificarea tuturor teritoriilor românești' },
-      { q: 'Cine a fost Ștefan cel Mare?', a: 'Domnitorul Moldovei (1457–1504), apărător al creștinătății' },
+      // Mircea
+      { q: 'Când a trăit Mircea cel Bătrân?', a: '1355–1418 (63 de ani)' },
+      { q: 'Câte domnii a avut Mircea cel Bătrân?', a: 'Două: 1386–1395 (9 ani) și 1397–1418 (21 ani)' },
+      { q: 'Ce a construit Mircea cel Bătrân la Târgoviște?', a: 'Cetatea de Scaun — capitala Țării Românești' },
+      { q: 'Cum a câștigat Mircea Bătălia de la Rovine (1395)?', a: 'Printr-un șiretlic: a ales ca teren de luptă mlaștina, cu doar ~12.000 soldați împotriva a ~40.000' },
+      { q: 'Unde este înmormântat Mircea cel Bătrân?', a: 'La Mănăstirea Cozia' },
+      // Vlad Tepes
+      { q: 'Când a trăit Vlad Țepeș și câte domnii a avut?', a: '1431–1476 (45 ani) · Trei domnii: 1448 / 1456–1462 / 1476' },
+      { q: 'De unde provine porecla „Dracula"?', a: 'De la Ordinul Dragonului, din care făcea parte tatăl său Vlad al II-lea' },
+      { q: 'Ce a făcut Vlad Țepeș în 1462 pentru a înfrânge turcii?', a: 'A stricat toate fântânile și a luat resursele de hrană din drumul turcilor' },
+      { q: 'Cu ajutorul cui a recuperat Vlad Țepeș tronul în 1475?', a: 'Cu ajutorul lui Ștefan cel Mare' },
+      { q: 'Unde a fost înmormântat Vlad Țepeș?', a: 'La Mănăstirea Snagov (corpul); capul — trimis în țeapă sultanului' },
+      // Iancu
+      { q: 'Când a trăit Iancu de Hunedoara și ce funcții a avut?', a: '1407–1456 · Voievod al Transilvaniei (1441–1446), înlocuitor al Regelui Ungariei (1446–1453)' },
+      { q: 'Cum i se mai spunea lui Iancu de Hunedoara?', a: '„Atletul lui Cristos" — cel mai de seamă apărător al creștinismului' },
+      { q: 'Care a fost cea mai importantă bătălie câștigată de Iancu?', a: 'Bătălia de la Belgrad (iulie 1456) — împotriva otomanilor' },
+      { q: 'Cum a murit Iancu de Hunedoara?', a: 'De ciumă, pe 11 august 1456. Înmormântat la Catedrala din Alba Iulia' },
+      { q: 'Cine a fost fiul lui Iancu de Hunedoara?', a: 'Matei Corvin — considerat cel mai mare rege al Ungariei' },
+      // Stefan
+      { q: 'Câți ani a domnit Ștefan cel Mare și ce record deține?', a: '47 de ani (1457–1504) — cea mai lungă domnie neîntreruptă din Evul Mediu' },
+      { q: 'Câte bătălii a purtat Ștefan cel Mare și câte a câștigat?', a: '42 bătălii: 37 câștigate, 5 pierdute' },
+      { q: 'Ce mănăstire a ctitorit Ștefan cel Mare, unică în lume?', a: 'Mănăstirea Voroneț (1488) — pentru „albastrul de Voroneț"' },
+      { q: 'Unde este înmormântat Ștefan cel Mare?', a: 'La Mănăstirea Putna (ctitorită în 1469)' },
+      { q: 'Cum a obținut Ștefan cel Mare tronul în 1457?', a: 'Cu ajutorul lui Vlad Țepeș (~6000 soldați) pentru a-l înfrânge pe Petru Aron' },
+      // Mihai
+      { q: 'Când a trăit Mihai Viteazul?', a: '1558–1601 (43 de ani)' },
+      { q: 'Ce a realizat Mihai Viteazul în 1600 la Alba Iulia?', a: 'Prima unire politică a celor 3 teritorii românești (a durat ~4-5 luni)' },
+      { q: 'Care a fost ultima bătălie câștigată de Mihai Viteazul?', a: 'Bătălia de la Gurăslău (3 august 1601)' },
+      { q: 'Cum și de cine a fost asasinat Mihai Viteazul?', a: 'Prin tăierea capului, la ordinul generalului Giorgio Basta (Imperiul Habsburgic), pe 9 august 1601' },
+      { q: 'Unde este înmormântat capul lui Mihai Viteazul?', a: 'La Mănăstirea Dealu, de lângă Târgoviște' },
     ],
     teste: [
-      { q: 'În ce an a avut loc Unirea Principatelor Române?', opts: ['1848','1859','1881','1918'], ans: 1 },
-      { q: 'Cine a condus Principatele Unite după Unire?', opts: ['Mihai Eminescu','Carol I','Alexandru Ioan Cuza','Ștefan cel Mare'], ans: 2 },
-      { q: 'Ce semnificație are data de 1 Decembrie?', opts: ['Ziua Unirii Principatelor','Ziua Națională a României','Ziua Independenței','Ziua Armatei'], ans: 1 },
+      { q: 'În ce ani a trăit Mircea cel Bătrân?', opts: ['1355–1418','1386–1456','1350–1410','1400–1456'], ans: 0 },
+      { q: 'Câți soldați avea Mircea la Bătălia de la Rovine?', opts: ['40.000','6.000','12.000','25.000'], ans: 2 },
+      { q: 'Unde este înmormântat Mircea cel Bătrân?', opts: ['Mănăstirea Putna','Mănăstirea Cozia','Mănăstirea Dealu','Mănăstirea Snagov'], ans: 1 },
+      { q: 'Câte domnii a avut Vlad Țepeș?', opts: ['Una','Două','Trei','Patru'], ans: 2 },
+      { q: 'Unde a fost înmormântat Vlad Țepeș?', opts: ['Mănăstirea Cozia','Mănăstirea Dealu','Mănăstirea Snagov','Catedrala Alba Iulia'], ans: 2 },
+      { q: 'Cum a murit Iancu de Hunedoara?', opts: ['A fost asasinat','A murit de ciumă','A căzut în bătălie','A murit de bătrânețe'], ans: 1 },
+      { q: 'Care a fost cea mai importantă bătălie a lui Iancu de Hunedoara?', opts: ['Bătălia de la Kosovo','Bătălia de la Belgrad','Bătălia de pe Ialomița','Bătălia de la Sântimbru'], ans: 1 },
+      { q: 'Câți ani a durat domnia lui Ștefan cel Mare?', opts: ['35','40','47','52'], ans: 2 },
+      { q: 'Câte bătălii a câștigat Ștefan cel Mare din 42?', opts: ['30','35','37','40'], ans: 2 },
+      { q: 'Unde este înmormântat Ștefan cel Mare?', opts: ['Mănăstirea Voroneț','Mănăstirea Putna','Mănăstirea Cozia','Cetatea Sucevei'], ans: 1 },
+      { q: 'În ce an a realizat Mihai Viteazul Unirea celor 3 teritorii?', opts: ['1595','1599','1600','1601'], ans: 2 },
+      { q: 'Unde a avut loc ceremonia Unirii lui Mihai Viteazul?', opts: ['București','Târgoviște','Suceava','Alba Iulia'], ans: 3 },
+      { q: 'Cine a ordonat asasinarea lui Mihai Viteazul?', opts: ['Sigismund Bathory','Giorgio Basta','Ieremia Movilă','Matei Corvin'], ans: 1 },
     ],
-    video: [
-      { name: 'Unirea Principatelor — lecție animată', meta: 'YouTube · 8 min', link: 'https://www.youtube.com' },
-    ],
+    video: [],
   },
   geografie: {
     name: 'Geografie', icon: '🌍',
     color: 'var(--geografie)', soft: 'var(--geografie-soft)',
-    fise: [
-      { name: 'Relieful României', meta: 'PDF · Lecția 2', link: '#' },
-    ],
-    flashcards: [
-      { q: 'Care este cel mai înalt vârf din România?', a: 'Vârful Moldoveanu — 2544 m' },
-      { q: 'Ce fluviu curge prin România și se varsă în Marea Neagră?', a: 'Dunărea' },
-      { q: 'Care este capitala României?', a: 'București' },
-      { q: 'Câte județe are România?', a: '41 de județe + municipiul București' },
-    ],
-    teste: [
-      { q: 'Care este cel mai înalt vârf din Carpații Românești?', opts: ['Omu','Moldoveanu','Negoiu','Retezat'], ans: 1 },
-      { q: 'În ce mare se varsă Dunărea?', opts: ['Marea Mediterană','Marea Caspică','Marea Neagră','Oceanul Atlantic'], ans: 2 },
-    ],
+    fise: [],
+    flashcards: [],
+    teste: [],
     video: [],
   },
   stiinte: {
     name: 'Științele naturii', icon: '🔬',
     color: 'var(--stiinte)', soft: 'var(--stiinte-soft)',
-    fise: [
-      { name: 'Plantele — organe și funcții', meta: 'PDF · Lecția 1', link: '#' },
-      { name: 'Corpul uman — sistemul digestiv', meta: 'PDF · Lecția 5', link: '#' },
-    ],
-    flashcards: [
-      { q: 'Ce este fotosinteza?', a: 'Procesul prin care plantele produc hrană din lumina soarelui, apă și CO₂' },
-      { q: 'Care sunt cele 3 stări ale apei?', a: 'Solidă (gheață), lichidă (apă), gazoasă (abur)' },
-      { q: 'Ce organ pompează sângele în corp?', a: 'Inima' },
-      { q: 'Ce sunt mamiferele?', a: 'Animale cu sânge cald care alăptează puii' },
-    ],
-    teste: [
-      { q: 'Ce proces folosesc plantele pentru a produce hrană?', opts: ['Respirație','Fotosinteză','Digestie','Circulație'], ans: 1 },
-      { q: 'Câte camere are inima umană?', opts: ['2','3','4','5'], ans: 2 },
-      { q: 'Care este organul principal al sistemului nervos?', opts: ['Inima','Plămânii','Creierul','Stomacul'], ans: 2 },
-    ],
-    video: [
-      { name: 'Fotosinteza explicată simplu', meta: 'YouTube · 6 min', link: 'https://www.youtube.com' },
-      { name: 'Corpul uman — animație', meta: 'YouTube · 12 min', link: 'https://www.youtube.com' },
-    ],
+    fise: [],
+    flashcards: [],
+    teste: [],
+    video: [],
   },
   matematica: {
     name: 'Matematică', icon: '🔢',
     color: 'var(--matematica)', soft: 'var(--matematica-soft)',
-    fise: [
-      { name: 'Înmulțirea numerelor de 2 cifre', meta: 'PDF · Lecția 4', link: '#' },
-      { name: 'Fracții — noțiuni de bază', meta: 'PDF · Lecția 9', link: '#' },
-    ],
-    flashcards: [
-      { q: '7 × 8 = ?', a: '56' },
-      { q: 'Care este cel mai mare număr de 4 cifre?', a: '9 999' },
-      { q: '1/2 + 1/4 = ?', a: '3/4' },
-      { q: 'Cât face 15% din 200?', a: '30' },
-    ],
-    teste: [
-      { q: 'Cât face 36 × 4?', opts: ['124','144','136','148'], ans: 1 },
-      { q: 'Care este rezultatul lui 1000 − 375?', opts: ['635','625','615','645'], ans: 1 },
-      { q: 'Cât face 1/2 din 80?', opts: ['20','30','40','50'], ans: 2 },
-    ],
+    fise: [],
+    flashcards: [],
+    teste: [],
     video: [],
   },
 };
@@ -885,7 +974,6 @@ const SUBJECTS = {
 let currentSubject = null;
 let fcIndex = 0;
 let fcFlipped = false;
-let testAnswers = {};
 
 function openSubject(key) {
   currentSubject = key;
@@ -927,7 +1015,7 @@ function renderFise(key) {
   const list = document.getElementById('fise-list');
   const fise = SUBJECTS[key].fise;
   if (!fise.length) {
-    list.innerHTML = `<div class="empty-state"><div class="empty-icon">📄</div><div class="empty-text">Nicio fișă adăugată</div><div class="empty-sub">Apasă butonul de mai sus pentru a adăuga</div></div>`;
+    list.innerHTML = `<div class="empty-state"><div class="empty-icon">📄</div><div class="empty-text">Nu e nimic aici momentan</div><div class="empty-sub">Fișele vor apărea când vor fi adăugate</div></div>`;
     return;
   }
   list.innerHTML = fise.map(f => `
@@ -948,7 +1036,7 @@ function renderFlashcards(key) {
   const cards = SUBJECTS[key].flashcards;
   const cont = document.getElementById('fc-container');
   if (!cards.length) {
-    cont.innerHTML = `<div class="empty-state"><div class="empty-icon">🃏</div><div class="empty-text">Niciun flash card</div></div>`;
+    cont.innerHTML = `<div class="empty-state"><div class="empty-icon">🃏</div><div class="empty-text">Nu e nimic aici momentan</div></div>`;
     return;
   }
   cont.innerHTML = `
@@ -997,76 +1085,113 @@ function updateCard() {
 }
 
 // ══════════ TESTE ══════════
+let testQuestions = [];
+let testCurrentIdx = 0;
+let testCorrect = 0;
+let testAnswered = false;
+
 function renderTest(key) {
-  testAnswers = {};
+  testQuestions = [...SUBJECTS[key].teste];
+  testCurrentIdx = 0;
+  testCorrect = 0;
+  testAnswered = false;
+
   const cont = document.getElementById('test-container');
-  const teste = SUBJECTS[key].teste;
-  if (!teste.length) {
-    cont.innerHTML = `<div class="empty-state"><div class="empty-icon">✏️</div><div class="empty-text">Niciun test disponibil</div></div>`;
+  if (!testQuestions.length) {
+    cont.innerHTML = `<div class="empty-state"><div class="empty-icon">✏️</div><div class="empty-text">Nu e nimic aici momentan</div></div>`;
     return;
   }
-  cont.innerHTML = teste.map((t,qi) => `
+
+  // Show progress + question wrap + next btn + celebration (hidden)
+  document.getElementById('test-progress-wrap') && updateProgress();
+  document.getElementById('test-celebration').classList.remove('show');
+  document.getElementById('test-next-btn').classList.remove('visible');
+  showQuestion(0);
+}
+
+function updateProgress() {
+  const total = testQuestions.length;
+  const current = testCurrentIdx;
+  document.getElementById('test-progress-label').textContent = `Întrebarea ${Math.min(current + 1, total)} din ${total}`;
+  document.getElementById('test-progress-score').textContent = `${testCorrect} corecte`;
+  document.getElementById('test-progress-fill').style.width = `${(current / total) * 100}%`;
+}
+
+function showQuestion(idx) {
+  testAnswered = false;
+  const q = testQuestions[idx];
+  document.getElementById('test-next-btn').classList.remove('visible');
+  document.getElementById('test-q-wrap').innerHTML = `
     <div class="test-question">
-      <div class="test-q-text">${qi+1}. ${t.q}</div>
+      <div class="test-q-text">${q.q}</div>
       <div class="test-options">
-        ${t.opts.map((o,oi) => `
-          <button class="test-option" id="opt-${qi}-${oi}" onclick="selectOpt(${qi},${oi})">${o}</button>
+        ${q.opts.map((o, oi) => `
+          <button class="test-option" id="topt-${oi}" onclick="answerQuestion(${oi})">${o}</button>
         `).join('')}
       </div>
     </div>
-  `).join('') + `
-    <button class="test-submit" onclick="submitTest()">Verifică răspunsurile ✓</button>
-    <div class="test-result" id="test-result"></div>
   `;
+  updateProgress();
 }
 
-function selectOpt(qi, oi) {
-  const teste = SUBJECTS[currentSubject].teste;
-  // Remove previous selection
-  teste[qi].opts.forEach((_,i) => {
-    const btn = document.getElementById(`opt-${qi}-${i}`);
-    if (btn) btn.style.borderColor = 'var(--border)';
-    if (btn) btn.style.background = 'var(--surface2)';
-    if (btn) btn.style.color = 'var(--text-primary)';
-  });
-  testAnswers[qi] = oi;
-  const btn = document.getElementById(`opt-${qi}-${oi}`);
-  btn.style.borderColor = 'var(--accent-blue)';
-  btn.style.background = 'var(--accent-blue-soft)';
-  btn.style.color = 'var(--accent-blue)';
+function answerQuestion(oi) {
+  if (testAnswered) return;
+  testAnswered = true;
+
+  const q = testQuestions[testCurrentIdx];
+  const opts = document.querySelectorAll('.test-option');
+  opts.forEach(o => o.disabled = true);
+
+  if (oi === q.ans) {
+    testCorrect++;
+    document.getElementById(`topt-${oi}`).classList.add('correct');
+  } else {
+    document.getElementById(`topt-${oi}`).classList.add('wrong');
+    document.getElementById(`topt-${q.ans}`).classList.add('correct');
+  }
+
+  document.getElementById('test-progress-score').textContent = `${testCorrect} corecte`;
+
+  const isLast = testCurrentIdx === testQuestions.length - 1;
+  const btn = document.getElementById('test-next-btn');
+  btn.textContent = isLast ? 'Vezi rezultatul 🎉' : 'Următoarea întrebare →';
+  btn.classList.add('visible');
 }
 
-function submitTest() {
-  const teste = SUBJECTS[currentSubject].teste;
-  let correct = 0;
-  teste.forEach((t, qi) => {
-    t.opts.forEach((_,oi) => {
-      const btn = document.getElementById(`opt-${qi}-${oi}`);
-      if (!btn) return;
-      btn.disabled = true;
-      btn.style.borderColor = 'var(--border)';
-      btn.style.background = 'var(--surface2)';
-      btn.style.color = 'var(--text-primary)';
-    });
-    const selected = testAnswers[qi];
-    if (selected !== undefined) {
-      if (selected === t.ans) {
-        correct++;
-        document.getElementById(`opt-${qi}-${selected}`).classList.add('correct');
-      } else {
-        document.getElementById(`opt-${qi}-${selected}`).classList.add('wrong');
-        document.getElementById(`opt-${qi}-${t.ans}`).classList.add('correct');
-      }
-    } else {
-      document.getElementById(`opt-${qi}-${t.ans}`).classList.add('correct');
-    }
-  });
-  const res = document.getElementById('test-result');
-  const pct = Math.round((correct / teste.length) * 100);
-  const emoji = pct === 100 ? '🌟' : pct >= 66 ? '👏' : pct >= 33 ? '💪' : '📖';
-  res.style.background = pct === 100 ? 'var(--geografie-soft)' : pct >= 66 ? '#fff9eb' : '#fff5f5';
-  res.innerHTML = `<h3>${emoji} ${correct} din ${teste.length} corecte</h3><p>${pct}% — ${pct===100?'Felicitări, totul corect!':pct>=66?'Foarte bine! Mai exersează puțin.':'Continuă să înveți, poți mai mult!'}`;
-  res.classList.add('show');
+function nextQuestion() {
+  const isLast = testCurrentIdx === testQuestions.length - 1;
+  if (isLast) {
+    showCelebration();
+    return;
+  }
+  testCurrentIdx++;
+  showQuestion(testCurrentIdx);
+}
+
+function showCelebration() {
+  document.getElementById('test-q-wrap').innerHTML = '';
+  document.getElementById('test-next-btn').classList.remove('visible');
+  document.getElementById('test-progress-fill').style.width = '100%';
+  document.getElementById('test-progress-label').textContent = 'Test terminat!';
+
+  const total = testQuestions.length;
+  const pct = Math.round((testCorrect / total) * 100);
+  document.getElementById('celebration-score').textContent = `${testCorrect} din ${total}`;
+  document.getElementById('celebration-msg').textContent =
+    pct === 100 ? 'Perfect! Ai răspuns corect la toate! Ești campioana clasei! 🏆' :
+    pct >= 80  ? 'Foarte bine! Aproape perfect, mai puțin de antrenat!' :
+    pct >= 60  ? 'Bine! Continuă să exersezi și vei reuși!' :
+                 'Mai încearcă! Cu fiecare test ești mai bună! 💪';
+  document.getElementById('test-celebration').classList.add('show');
+  document.getElementById('test-celebration').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function restartTest() {
+  document.getElementById('test-celebration').classList.remove('show');
+  testCurrentIdx = 0;
+  testCorrect = 0;
+  testAnswered = false;
+  showQuestion(0);
 }
 
 // ══════════ VIDEO ══════════
@@ -1074,7 +1199,7 @@ function renderVideo(key) {
   const vids = SUBJECTS[key].video;
   const list = document.getElementById('video-list');
   if (!vids.length) {
-    list.innerHTML = `<div class="empty-state"><div class="empty-icon">▶️</div><div class="empty-text">Niciun clip adăugat</div><div class="empty-sub">Adaugă linkuri YouTube mai sus</div></div>`;
+    list.innerHTML = `<div class="empty-state"><div class="empty-icon">▶️</div><div class="empty-text">Nu e nimic aici momentan</div><div class="empty-sub">Clipurile vor apărea când vor fi adăugate</div></div>`;
     return;
   }
   list.innerHTML = vids.map(v => `
