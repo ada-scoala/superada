@@ -261,66 +261,7 @@
     margin-bottom: 40px;
   }
 
-  .subject-card {
-    background: var(--surface);
-    border-radius: var(--radius);
-    padding: 24px;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: box-shadow 0.25s, transform 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .subject-card:hover {
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-2px);
-  }
-  .subject-card:active { transform: scale(0.98); }
-
-  .subject-card.active { border-color: transparent; }
-
-  .subject-dot {
-    width: 44px; height: 44px;
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    margin-bottom: 16px;
-  }
-
-  .subject-card[data-subject="istorie"] .subject-dot { background: var(--istorie-soft); }
-  .subject-card[data-subject="geografie"] .subject-dot { background: var(--geografie-soft); }
-  .subject-card[data-subject="stiinte"] .subject-dot { background: var(--stiinte-soft); }
-  .subject-card[data-subject="matematica"] .subject-dot { background: var(--matematica-soft); }
-
-  .subject-name {
-    font-size: 16px; font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: -0.3px;
-    margin-bottom: 4px;
-  }
-  .subject-count {
-    font-size: 13px; color: var(--text-tertiary); font-weight: 500;
-  }
-
-  .subject-bar {
-    margin-top: 16px;
-    height: 4px;
-    background: var(--bg);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .subject-bar-fill {
-    height: 100%;
-    border-radius: 2px;
-    transition: width 0.6s ease;
-  }
-  .subject-card[data-subject="istorie"] .subject-bar-fill { background: var(--istorie); }
-  .subject-card[data-subject="geografie"] .subject-bar-fill { background: var(--geografie); }
-  .subject-card[data-subject="stiinte"] .subject-bar-fill { background: var(--stiinte); }
-  .subject-card[data-subject="matematica"] .subject-bar-fill { background: var(--matematica); }
-
-  /* ── CONTENT PANEL ── */
+  /* ── RESPONSIVE ── */
   .content-panel {
     background: var(--surface);
     border-radius: var(--radius);
@@ -615,7 +556,61 @@
   }
   .test-retry-btn:hover { background: #333; }
 
-  .test-result { display: none; }
+  /* ── TEST SELECTOR ── */
+  .test-selector-wrap {
+    margin-bottom: 20px;
+  }
+  .test-selector-label {
+    font-size: 13px; font-weight: 600; color: var(--text-secondary);
+    margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .test-selector-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px;
+  }
+  .test-sel-btn {
+    padding: 8px 4px; border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    background: var(--surface2);
+    font-size: 13px; font-weight: 600; color: var(--text-secondary);
+    cursor: pointer; font-family: var(--font);
+    transition: all 0.2s; text-align: center;
+  }
+  .test-sel-btn:hover { border-color: var(--accent-blue); color: var(--accent-blue); background: var(--accent-blue-soft); }
+  .test-sel-btn.active { background: var(--accent-blue); color: white; border-color: var(--accent-blue); }
+
+  /* ── OPEN ANSWER ── */
+  .open-answer-wrap { margin-top: 8px; }
+  .open-answer-input {
+    width: 100%; padding: 13px 16px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    background: var(--surface2);
+    font-size: 15px; font-family: var(--font);
+    color: var(--text-primary); outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .open-answer-input:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(0,113,227,0.1);
+    background: var(--surface);
+  }
+  .open-answer-input.correct { border-color: var(--geografie); background: var(--geografie-soft); color: var(--geografie); }
+  .open-answer-input.wrong { border-color: #ff3b30; background: #fff5f5; color: #ff3b30; }
+  .open-check-btn {
+    width: 100%; margin-top: 10px; padding: 13px;
+    border-radius: var(--radius-sm);
+    background: var(--text-primary); color: white; border: none;
+    font-size: 14px; font-weight: 600; cursor: pointer; font-family: var(--font);
+    transition: background 0.2s;
+  }
+  .open-check-btn:hover { background: #333; }
+  .open-answer-feedback {
+    margin-top: 10px; padding: 10px 14px; border-radius: var(--radius-sm);
+    font-size: 13px; font-weight: 500; display: none;
+  }
+  .open-answer-feedback.show { display: block; }
+  .open-answer-feedback.ok { background: var(--geografie-soft); color: var(--geografie); }
+  .open-answer-feedback.nok { background: #fff5f5; color: #ff3b30; }
 
   /* ── VIDEO ── */
   .video-grid { display: flex; flex-direction: column; gap: 10px; }
@@ -667,7 +662,97 @@
   .empty-text { font-size: 15px; font-weight: 500; color: var(--text-secondary); }
   .empty-sub { font-size: 13px; margin-top: 4px; }
 
-  /* ── RESPONSIVE ── */
+  /* ── SUBJECT GRID ── */
+  .subject-dot {
+    width: 44px; height: 44px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 16px;
+  }
+  .subject-card[data-subject="istorie"] .subject-dot { background: var(--istorie-soft); }
+  .subject-card[data-subject="geografie"] .subject-dot { background: var(--geografie-soft); }
+  .subject-card[data-subject="stiinte"] .subject-dot { background: var(--stiinte-soft); }
+  .subject-card[data-subject="matematica"] .subject-dot { background: var(--matematica-soft); }
+  .subject-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .subject-card:active { transform: scale(0.98); }
+  .subject-name { font-size: 16px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.3px; margin-bottom: 4px; }
+  .subject-count { font-size: 13px; color: var(--text-tertiary); font-weight: 500; }
+  .subject-bar { margin-top: 16px; height: 4px; background: var(--bg); border-radius: 2px; overflow: hidden; }
+  .subject-bar-fill { height: 100%; border-radius: 2px; transition: width 0.6s ease; }
+  .subject-card[data-subject="istorie"] .subject-bar-fill { background: var(--istorie); }
+  .subject-card[data-subject="geografie"] .subject-bar-fill { background: var(--geografie); }
+  .subject-card[data-subject="stiinte"] .subject-bar-fill { background: var(--stiinte); }
+  .subject-card[data-subject="matematica"] .subject-bar-fill { background: var(--matematica); }
+
+  /* ── CONTENT PANEL ── */
+  .content-panel {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 40px;
+    display: none;
+    animation: slideUp 0.3s ease;
+  }
+  .content-panel.visible { display: block; }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SUBJECT MINI HEADER (when panel open) ── */
+  .subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 40px;
+    transition: all 0.35s ease;
+  }
+  .subjects-grid.collapsed {
+    display: flex; flex-direction: row;
+    gap: 8px; margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .subject-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: box-shadow 0.25s, transform 0.2s, padding 0.3s, border-radius 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .subjects-grid.collapsed .subject-card {
+    padding: 10px 14px;
+    border-radius: 20px;
+    box-shadow: none;
+    display: flex; align-items: center; gap: 8px;
+    flex: 0 0 auto;
+  }
+  .subjects-grid.collapsed .subject-card .subject-dot {
+    width: 28px; height: 28px; border-radius: 8px;
+    font-size: 14px; margin-bottom: 0;
+  }
+  .subjects-grid.collapsed .subject-card .subject-name {
+    font-size: 13px;
+  }
+  .subjects-grid.collapsed .subject-card .subject-count,
+  .subjects-grid.collapsed .subject-card .subject-bar {
+    display: none;
+  }
+  .subjects-grid.collapsed .subject-card.active-subject {
+    border-color: transparent;
+    color: white;
+  }
+  .subject-card.active-subject[data-subject="istorie"] { background: var(--istorie); }
+  .subject-card.active-subject[data-subject="geografie"] { background: var(--geografie); }
+  .subject-card.active-subject[data-subject="stiinte"] { background: var(--stiinte); }
+  .subject-card.active-subject[data-subject="matematica"] { background: var(--matematica); }
+  .subject-card.active-subject .subject-name { color: white; }
+  .subject-card.active-subject .subject-dot { background: rgba(255,255,255,0.2) !important; }
   @media (max-width: 600px) {
     .main { padding: 24px 16px 80px; }
     .greeting h2 { font-size: 28px; }
@@ -692,6 +777,85 @@
     margin-bottom: 20px;
     line-height: 1.5;
   }
+
+  /* ── FIȘĂ MODAL ── */
+  .fisa-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    display: flex; align-items: flex-end;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .fisa-overlay.open {
+    opacity: 1; pointer-events: all;
+  }
+  .fisa-sheet {
+    background: var(--surface);
+    border-radius: 24px 24px 0 0;
+    width: 100%; max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    padding: 0 0 40px;
+  }
+  .fisa-overlay.open .fisa-sheet {
+    transform: translateY(0);
+  }
+  .fisa-sheet-handle {
+    width: 40px; height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin: 12px auto 0;
+  }
+  .fisa-sheet-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0;
+    background: var(--surface);
+    z-index: 1;
+  }
+  .fisa-sheet-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .fisa-sheet-title { font-size: 17px; font-weight: 700; flex: 1; color: var(--text-primary); letter-spacing: -0.3px; }
+  .fisa-sheet-date { font-size: 12px; color: var(--text-tertiary); margin-top: 2px; }
+  .fisa-close {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--bg); border: none; cursor: pointer;
+    font-size: 16px; color: var(--text-secondary);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .fisa-body { padding: 20px; }
+  .fisa-section { margin-bottom: 20px; }
+  .fisa-section-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.8px; color: var(--text-tertiary);
+    margin-bottom: 10px;
+  }
+  .fisa-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 10px 14px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    margin-bottom: 6px;
+    font-size: 14px; line-height: 1.55; color: var(--text-secondary);
+  }
+  .fisa-item::before { content: '•'; color: var(--istorie); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .fisa-item strong { color: var(--text-primary); }
+  .fisa-highlight {
+    background: #fff9eb;
+    border-left: 3px solid #f59e0b;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 12px 14px;
+    font-size: 14px; line-height: 1.6; color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+  .fisa-highlight strong { color: #92400e; }
 </style>
 </head>
 <body>
@@ -750,7 +914,7 @@
         <div class="stat-label">Fișe</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" id="stat-tests">13</div>
+        <div class="stat-number" id="stat-tests">20</div>
         <div class="stat-label">Teste</div>
       </div>
     </div>
@@ -760,7 +924,7 @@
       <div class="section-title">Materii</div>
     </div>
 
-    <div class="subjects-grid">
+    <div class="subjects-grid" id="subjects-grid">
       <div class="subject-card" data-subject="istorie" onclick="openSubject('istorie')">
         <div class="subject-dot">🏛️</div>
         <div class="subject-name">Istorie</div>
@@ -805,19 +969,17 @@
 
       <!-- FIȘE -->
       <div class="tab-content active" id="tab-fise">
-        <div class="notice">💡 <strong>Cum adaugi fișe:</strong> Încarcă PDF-urile în Google Drive, copiază linkul și trimite-mi-l mie să îl adaug.</div>
-        <div class="upload-zone" onclick="alert('Funcție disponibilă după publicare pe site. Adaugă linkuri Google Drive mai jos.')">
-          <div class="upload-icon">📤</div>
-          <div class="upload-text">Adaugă o fișă nouă</div>
-          <div class="upload-sub">Lipește un link Google Drive sau YouTube</div>
-        </div>
         <div class="items-list" id="fise-list"></div>
       </div>
 
       <!-- TESTE -->
       <div class="tab-content" id="tab-teste">
         <div id="test-container">
-          <div class="test-progress-wrap">
+          <div class="test-selector-wrap" id="test-selector-wrap">
+            <div class="test-selector-label">Alege testul</div>
+            <div class="test-selector-grid" id="test-selector-grid"></div>
+          </div>
+          <div class="test-progress-wrap" id="test-progress-wrap" style="display:none">
             <div class="test-progress-info">
               <span class="test-progress-label" id="test-progress-label">Întrebarea 1 din 13</span>
               <span class="test-progress-score" id="test-progress-score">0 corecte</span>
@@ -833,7 +995,7 @@
             <div class="celebration-title">Bravo, Ada! 🌟</div>
             <div class="celebration-score" id="celebration-score"></div>
             <div class="celebration-msg" id="celebration-msg"></div>
-            <button class="test-retry-btn" onclick="restartTest()">Încearcă din nou</button>
+            <button class="test-retry-btn" onclick="showTestSelector()">Alege alt test</button>
           </div>
         </div>
       </div>
@@ -890,8 +1052,8 @@ const SUBJECTS = {
     color: 'var(--istorie)', soft: 'var(--istorie-soft)',
     fise: [
       { name: 'Mircea cel Bătrân — Domnitorul Țării Românești', meta: 'Tablă · 17.03.2026', link: '#' },
-      { name: 'Vlad Țepeș — Domnitorul Țării Românești', meta: 'Tablă · 24.03.2026', link: '#' },
       { name: 'Iancu de Hunedoara', meta: 'Tablă · 31.03.2026', link: '#' },
+      { name: 'Vlad Țepeș — Domnitorul Țării Românești', meta: 'Tablă · 24.03.2026', link: '#' },
       { name: 'Ștefan cel Mare — Domnitorul Moldovei', meta: 'Tablă · 21.04.2026', link: '#' },
       { name: 'Mihai Viteazul — Prima Unire', meta: 'Tablă · 05.05.2026 + 12.05.2026', link: '#' },
     ],
@@ -984,6 +1146,13 @@ function openSubject(key) {
   document.getElementById('panel-title').textContent = s.name;
   document.getElementById('panel-title').style.color = s.color;
 
+  // Collapse grid to mini pills
+  const grid = document.getElementById('subjects-grid');
+  grid.classList.add('collapsed');
+  document.querySelectorAll('.subject-card').forEach(c => {
+    c.classList.toggle('active-subject', c.dataset.subject === key);
+  });
+
   // Reset tabs
   document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', i===0));
   document.querySelectorAll('.tab-content').forEach((t,i) => t.classList.toggle('active', i===0));
@@ -995,11 +1164,13 @@ function openSubject(key) {
 
   const panel = document.getElementById('content-panel');
   panel.classList.add('visible');
-  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
 }
 
 function closePanel() {
   document.getElementById('content-panel').classList.remove('visible');
+  document.getElementById('subjects-grid').classList.remove('collapsed');
+  document.querySelectorAll('.subject-card').forEach(c => c.classList.remove('active-subject'));
   currentSubject = null;
 }
 
@@ -1010,6 +1181,132 @@ function switchTab(name, btn) {
   document.getElementById('tab-' + name).classList.add('active');
 }
 
+// ══════════ FIȘE CONTENT ══════════
+const FISE_CONTENT = {
+  'Mircea cel Bătrân — Domnitorul Țării Românești': {
+    icon: '🏰', date: '17.03.2026', color: 'var(--istorie-soft)',
+    sections: [
+      { title: 'Date de bază', items: [
+        '<strong>Ani de viață:</strong> 1355–1418 (63 de ani)',
+        '<strong>Prima domnie:</strong> 1386–1395 (9 ani)',
+        '<strong>A doua domnie:</strong> 1397–1418 (21 de ani)',
+        'Numit „cel Bătrân" pentru a se deosebi de nepotul său <strong>Mircea al II-lea</strong>',
+        'Urcă pe tron pe <strong>23 septembrie 1386</strong>, după moartea fratelui său Dan',
+      ]},
+      { title: 'Realizări', items: [
+        'A zidit <strong>Cetatea de Scaun (capitala)</strong> la Târgoviște',
+        'A organizat armata: <strong>oastea cea mare</strong> (din țărani) și <strong>oastea cea mică</strong> (soldați instruiți de la curtea domnitorului)',
+        'A întărit zidurile cetăților de la <strong>nordul Dunării</strong>',
+        'A dezvoltat: agricultura, economia, comerțul și mineritul',
+        'A fost: curajos, simplu, calculat, strategic, preocupat de cultură și biserici',
+      ]},
+      { title: 'Bătălii importante', highlights: [
+        '<strong>Bătălia de la Rovine (1395)</strong> — Mircea cu ~12.000 soldați înfrânge armata sultanului Baiazid I „Fulgerul" cu ~40.000 soldați, printr-un șiretlic: a ales ca teren de luptă mlaștina de la Rovine. Baiazid reattacă în același an, Mircea se refugiază în Transilvania. În 1397 recuperează tronul cu ajutorul lui Sigismund de Luxemburg.',
+        '<strong>Bătălia de la Nicopole (1396)</strong> — Mircea se implică în cruciada creștină anti-otomană alături de Sigismund de Luxemburg, dar sunt învinși.',
+        '<strong>Tratatul de Pace (1415)</strong> cu Mahomed I: cedarea Dobrogei, trimiterea unui fiu ca garanție, plata a 3.000 monede de aur/an (tribut). În schimb — independența Țării Românești.',
+      ], items: [
+        'Înmormântat la <strong>Mănăstirea Cozia</strong>',
+      ]},
+    ]
+  },
+  'Vlad Țepeș — Domnitorul Țării Românești': {
+    icon: '⚔️', date: '24.03.2026', color: 'var(--istorie-soft)',
+    sections: [
+      { title: 'Date de bază', items: [
+        '<strong>Ani de viață:</strong> 1431–1476 (45 de ani)',
+        '<strong>Prima domnie:</strong> 1448 | <strong>A doua domnie:</strong> 1456–1462 | <strong>A treia domnie:</strong> 1476',
+        'Nepotul lui Mircea cel Bătrân (fiul lui Vlad al II-lea), verișor primar cu Ștefan cel Mare',
+        'Vestit pentru: severitate, pedepsirea inamicilor prin <strong>tragerea în țeapă</strong>',
+        'Denumirea <strong>„Dracula"</strong> — de la Ordinul Dragonului, din care făcea parte tatăl său',
+      ]},
+      { title: 'Momente cheie', items: [
+        'Pe <strong>20 august 1456</strong> recuperează tronul, asasinându-l pe Vladislav al II-lea',
+        'Planul de răzbunare: boierii bătrâni vinovați de moartea tatălui — trași în țeapă; boierii tineri forțați să meargă 100 km pe jos până la Cetatea Poenari să reconstruiască zidurile',
+        'În <strong>1459</strong> refuză să mai plătească tribut turcilor; încheie alianță cu Matei Corvin',
+        'În <strong>1462</strong> respinge atacul otoman — a stricat toate fântânile și a luat resursele de hrană din drumul turcilor',
+        'Matei Corvin îl „arestează" și îl detronează; Țepeș recuperează tronul în <strong>1475 cu ajutorul lui Ștefan cel Mare</strong>',
+        'Prins de inamici și decapitat spre <strong>finalul anului 1476</strong>. Capul — trimis în țeapă sultanului. Corpul — înmormântat la <strong>Mănăstirea Snagov</strong>',
+      ]},
+    ]
+  },
+  'Iancu de Hunedoara': {
+    icon: '🛡️', date: '31.03.2026', color: 'var(--istorie-soft)',
+    sections: [
+      { title: 'Date de bază', items: [
+        '<strong>Ani de viață:</strong> 1407–1456 (49 de ani)',
+        'Voievod al Transilvaniei (1441–1446)',
+        'Înlocuitor al Regelui Ungariei (1446–1453)',
+        '<strong>„Atletul lui Cristos"</strong> — cel mai de seamă apărător al creștinismului',
+        'Fiul său: <strong>Matei Corvin</strong> — considerat cel mai mare rege al Ungariei',
+        'Regele Sigismund de Luxemburg i-a dăruit în 1409 <strong>Castelul Huniazilar din Hunedoara</strong>',
+      ]},
+      { title: 'Bătălii importante', items: [
+        '<strong>18 martie 1442 — Bătălia de la Sântimbru (jud. Alba)</strong>: armata otomană intrase în Transilvania, Iancu este înfrânt',
+        '<strong>2 septembrie 1442 — Bătălia de pe Ialomița</strong>: Iancu, cu ajutorul lui Basarab al II-lea, respinge atacul otoman',
+        '<strong>1448 — Bătălia de la Kosovo</strong>: înfrânt de armata sultanului Murad al II-lea. Apoi pleacă în Moldova și ajută pe vărul său Bogdan al II-lea (tatăl lui Ștefan cel Mare) să obțină tronul',
+        '<strong>Iulie 1456 — Bătălia de la Belgrad</strong> — cea mai importantă: câștigă împotriva otomanilor cu o oaste numeroasă',
+        'Pe <strong>11 august 1456</strong> moare de <strong>ciumă</strong>. Înmormântat la <strong>Catedrala din Alba Iulia</strong>',
+      ]},
+    ]
+  },
+  'Ștefan cel Mare — Domnitorul Moldovei': {
+    icon: '⛪', date: '21.04.2026', color: 'var(--istorie-soft)',
+    sections: [
+      { title: 'Date de bază', items: [
+        '<strong>Ani de viață:</strong> cca. 1438–1504, la Suceava',
+        '<strong>Domnie: 1457–1504</strong> — cea mai lungă domnie neîntreruptă (47 de ani) din Evul Mediu',
+        'Tată: <strong>Bogdan al II-lea</strong> | Mamă: <strong>Doamna Oltea (Maria)</strong>',
+        'Fizic: bărbat scund (~1m60), musculos, față rotundă, ochi albaștri, păr blond buclat, mustatp blondă, mers ușor șchiopătat',
+        'Caracter: neastâmpărat (copilărie), mânios, drept la judecată, îndrăzneț, cugetător, viteaz, crud, dar cu suflet mare',
+        'Urcă pe tron în <strong>1457</strong> cu ajutorul lui Vlad Țepeș (~6.000 soldați) pentru a-l înfrânge pe <strong>Petru Aron</strong>',
+      ]},
+      { title: 'Bătălii (42 purtate: 37 câștigate, 5 pierdute)', items: [
+        '<strong>Baia</strong> — împotriva regelui Ungariei Matei Corvin → VICTORIE',
+        '<strong>Lipnic</strong> — împotriva tătarilor → VICTORIE',
+        '<strong>Podul Înalt / Vaslui</strong> — împotriva Imperiului Otoman → VICTORIE',
+        '<strong>Valea Albă / Războieni</strong> — împotriva otomanilor → ÎNFRÂNGERE',
+        '<strong>Râmnic</strong> — împotriva lui Basarab cel Tânăr (Muntenia) → VICTORIE',
+        '<strong>Scheia (23.04.2026)</strong> — împotriva Imperiului Otoman → VICTORIE. Ștefan a căzut de pe cal; prietenii Lurice și Pântece l-au salvat. Același zi, Ștefan l-a capturat pe Hronoda și i-a tăiat capul',
+      ]},
+      { title: 'Ctitorii și cetăți', items: [
+        'A ctitorit aprox. <strong>26 de biserici și mănăstiri</strong>, câte una după fiecare bătălie câștigată',
+        '<strong>Mănăstirea Voroneț (1488)</strong> — unică în lume pentru pigmentul albastru al picturilor: „albastrul de Voroneț", care rezistă și în prezent',
+        '<strong>Mănăstirea Putna (1469)</strong> — aici a fost înmormântat în 1504',
+        'Cetăți: <strong>Cetatea Albă</strong> („Pintenul lui Ștefan cel Mare" — la Marea Neagră), <strong>Cetatea Chilia</strong>, <strong>Cetatea Neamțului</strong>, <strong>Cetatea Sucevei</strong> (capitala, reședință principală)',
+        'Moare pe <strong>2 iulie 1504</strong> din cauza unei răni la picior din timpul luptei pentru Cetatea Chilia',
+      ]},
+    ]
+  },
+  'Mihai Viteazul — Prima Unire': {
+    icon: '👑', date: '05.05.2026 + 12.05.2026', color: 'var(--istorie-soft)',
+    sections: [
+      { title: 'Date de bază', items: [
+        '<strong>Ani de viață:</strong> 1558–1601 (43 de ani)',
+        '<strong>Domnitorul Țării Românești:</strong> sept. 1593 – sept. 1600',
+        '<strong>Domnitorul Moldovei:</strong> mai 1600 – sept. 1600',
+        '<strong>Guvernator al Transilvaniei:</strong> nov. 1599 – oct. 1600',
+        'Mama: <strong>Teodora Cantacuzino</strong> (de neam grecesc). Tatăl — necunoscut.',
+        'Deși copilăria a fost dificilă, a primit educație în stil grecesc și a vorbit în multe limbi. Înainte de a deveni domnitor a fost comerciant priceput.',
+        'Înscăunat pe <strong>23 septembrie 1593</strong> la București, după ce a plătit tribut de 400.000 monede de aur. Locul — <strong>Piața Universității</strong> (și statuia de acolo)',
+        'În <strong>1594</strong> intră în <strong>Liga Sfântă Creștină</strong>. Refuză tributul și atacă cetățile turcești de la Dunăre (Giurgiu, Turnu, Hârșova)',
+      ]},
+      { title: 'Bătălii', items: [
+        '<strong>Călugăreni (aug. 1595)</strong> — cu ajutorul lui Sigismund Bathory, încearcă să oprească armata otomană',
+        '<strong>București, Târgoviște, Giurgiu (oct. 1595)</strong> — cu sprijin pe toate cele 3 fronturi, îi înfrânge pe turci',
+        '<strong>Selimbăr (oct. 1599)</strong> — victorie împotriva lui Andrei Bathory din Transilvania → devine guvernator al Transilvaniei',
+        '<strong>Mirăslău (sept. 1600)</strong> — înfrânt de Imperiul Habsburgic',
+        '<strong>Gurăslău (3 aug. 1601)</strong> — ultima bătălie câștigată, pentru recuperarea tronului Țării Românești (preluat de Simion Movilă)',
+      ]},
+      { title: 'Unirea și sfârșitul', highlights: [
+        '<strong>În 1600</strong>, Mihai Viteazul pătrunde cu oaste în Moldova și îl înlătură pe Ieremia Movilă. Acum, având în conducere cele 3 teritorii, înfăptuiește <strong>prima unire politică în 1600 la Alba Iulia</strong> (a durat aprox. 4–5 luni).',
+      ], items: [
+        'Pe <strong>9 august 1601</strong>, asasinat prin tăierea capului, la comanda generalului <strong>Giorgio Basta</strong> al Imperiului Habsburgic',
+        'Trupul — aruncat pe câmpia Cristișului; capul — înmormântat la <strong>Mănăstirea Dealu</strong>, de lângă Târgoviște',
+      ]},
+    ]
+  },
+};
+
 // ══════════ FIȘE ══════════
 function renderFise(key) {
   const list = document.getElementById('fise-list');
@@ -1019,15 +1316,41 @@ function renderFise(key) {
     return;
   }
   list.innerHTML = fise.map(f => `
-    <a class="item-row" href="${f.link}" target="_blank">
+    <div class="item-row" onclick="openFisa('${f.name}')" style="cursor:pointer">
       <div class="item-icon" style="background:${SUBJECTS[key].soft}">📄</div>
       <div class="item-info">
         <div class="item-name">${f.name}</div>
         <div class="item-meta">${f.meta}</div>
       </div>
-      <span class="item-arrow">↗</span>
-    </a>
+      <span class="item-arrow">›</span>
+    </div>
   `).join('');
+}
+
+function openFisa(name) {
+  const data = FISE_CONTENT[name];
+  if (!data) return;
+  document.getElementById('fisa-icon').textContent = data.icon;
+  document.getElementById('fisa-icon').style.background = data.color;
+  document.getElementById('fisa-title').textContent = name;
+  document.getElementById('fisa-date').textContent = data.date;
+  document.getElementById('fisa-body').innerHTML = data.sections.map(sec => `
+    <div class="fisa-section">
+      <div class="fisa-section-title">${sec.title}</div>
+      ${(sec.highlights||[]).map(h => `<div class="fisa-highlight">${h}</div>`).join('')}
+      ${(sec.items||[]).map(i => `<div class="fisa-item">${i}</div>`).join('')}
+    </div>
+  `).join('');
+  document.getElementById('fisa-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFisa(e) {
+  if (e.target === document.getElementById('fisa-overlay')) closeFisaBtn();
+}
+function closeFisaBtn() {
+  document.getElementById('fisa-overlay').classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 // ══════════ FLASH CARDS ══════════
@@ -1084,64 +1407,445 @@ function updateCard() {
   document.getElementById('fc-prog').textContent = `${fcIndex+1} / ${cards.length}`;
 }
 
-// ══════════ TESTE ══════════
+// ══════════ TOATE TESTELE (20 x 13 întrebări) ══════════
+// Tipuri: { type:'mc', q, opts, ans } = variante | { type:'open', q, ans, hints } = scriere liberă
+const ALL_TESTS = [
+// ── TEST 1 ──
+[
+  {type:'mc', q:'În ce ani a trăit Mircea cel Bătrân?', opts:['1355–1418','1386–1456','1330–1400','1400–1460'], ans:0},
+  {type:'open', q:'Cum se numea bătălia din 1395 câștigată de Mircea cel Bătrân?', ans:'rovine', hints:['Bătălia de la Rovine']},
+  {type:'mc', q:'Câți soldați avea Mircea cel Bătrân la Bătălia de la Rovine?', opts:['6.000','12.000','25.000','40.000'], ans:1},
+  {type:'open', q:'Unde este înmormântat Mircea cel Bătrân?', ans:'cozia', hints:['Mănăstirea Cozia']},
+  {type:'mc', q:'Când a trăit Vlad Țepeș?', opts:['1400–1470','1431–1476','1450–1500','1420–1480'], ans:1},
+  {type:'mc', q:'De unde provine porecla „Dracula"?', opts:['De la un sultan otoman','De la Ordinul Dragonului','De la Iancu de Hunedoara','De la Ștefan cel Mare'], ans:1},
+  {type:'open', q:'Unde a fost înmormântat corpul lui Vlad Țepeș?', ans:'snagov', hints:['Mănăstirea Snagov']},
+  {type:'mc', q:'Când a trăit Iancu de Hunedoara?', opts:['1380–1440','1407–1456','1420–1470','1390–1450'], ans:1},
+  {type:'open', q:'Cum i se mai spunea lui Iancu de Hunedoara?', ans:'atletul lui cristos', hints:['Atletul lui Cristos']},
+  {type:'mc', q:'Câți ani a durat domnia lui Ștefan cel Mare?', opts:['35','40','47','52'], ans:2},
+  {type:'open', q:'La ce mănăstire este înmormântat Ștefan cel Mare?', ans:'putna', hints:['Mănăstirea Putna']},
+  {type:'mc', q:'Unde a avut loc Unirea lui Mihai Viteazul în 1600?', opts:['București','Suceava','Târgoviște','Alba Iulia'], ans:3},
+  {type:'open', q:'Cine a ordonat asasinarea lui Mihai Viteazul?', ans:'giorgio basta', hints:['Giorgio Basta']},
+],
+// ── TEST 2 ──
+[
+  {type:'mc', q:'Câte domnii a avut Mircea cel Bătrân?', opts:['Una','Două','Trei','Patru'], ans:1},
+  {type:'open', q:'Ce a construit Mircea cel Bătrân la Târgoviște?', ans:'cetatea de scaun', hints:['Cetatea de Scaun']},
+  {type:'mc', q:'Cu ajutorul cui a recuperat Mircea tronul în 1397?', opts:['Vlad Țepeș','Iancu de Hunedoara','Sigismund de Luxemburg','Matei Corvin'], ans:2},
+  {type:'mc', q:'Câte domnii a avut Vlad Țepeș?', opts:['Una','Două','Trei','Patru'], ans:2},
+  {type:'open', q:'În ce an a refuzat Vlad Țepeș să mai plătească tribut turcilor?', ans:'1459', hints:['1459']},
+  {type:'mc', q:'Cu ajutorul cui a recuperat Vlad Țepeș tronul în 1475?', opts:['Mircea cel Bătrân','Iancu de Hunedoara','Ștefan cel Mare','Mihai Viteazul'], ans:2},
+  {type:'open', q:'Cum a murit Iancu de Hunedoara?', ans:'ciuma', hints:['De ciumă']},
+  {type:'mc', q:'Unde este înmormântat Iancu de Hunedoara?', opts:['Mănăstirea Putna','Mănăstirea Cozia','Catedrala din Alba Iulia','Mănăstirea Snagov'], ans:2},
+  {type:'mc', q:'Cine a ajutat Ștefan cel Mare să urce pe tron în 1457?', opts:['Mircea cel Bătrân','Iancu de Hunedoara','Vlad Țepeș','Mihai Viteazul'], ans:2},
+  {type:'open', q:'Câte bătălii a câștigat Ștefan cel Mare din 42?', ans:'37', hints:['37']},
+  {type:'mc', q:'Când a trăit Mihai Viteazul?', opts:['1520–1580','1558–1601','1540–1600','1570–1620'], ans:1},
+  {type:'open', q:'Cât timp a durat Unirea realizată de Mihai Viteazul?', ans:'4', hints:['4-5 luni']},
+  {type:'mc', q:'Unde este înmormântat capul lui Mihai Viteazul?', opts:['Mănăstirea Snagov','Mănăstirea Putna','Mănăstirea Dealu','Mănăstirea Cozia'], ans:2},
+],
+// ── TEST 3 ──
+[
+  {type:'open', q:'Cât timp a durat prima domnie a lui Mircea cel Bătrân?', ans:'9', hints:['9 ani (1386–1395)']},
+  {type:'mc', q:'Ce supranume purta sultanul Baiazid I, înfrânt la Rovine?', opts:['Cuceritorul','Fulgerul','Furtuna','Dragonul'], ans:1},
+  {type:'mc', q:'La ce luptă creștină anti-otomană a participat Mircea în 1396?', opts:['Bătălia de la Kosovo','Bătălia de la Belgrad','Bătălia de la Nicopole','Bătălia de la Varna'], ans:2},
+  {type:'open', q:'Pe cine a asasinat Vlad Țepeș pe 20 august 1456 pentru a-și recupera tronul?', ans:'vladislav', hints:['Vladislav al II-lea']},
+  {type:'mc', q:'Cum a reușit Vlad Țepeș să respingă atacul otoman în 1462?', opts:['Cu o armată uriașă','A stricat fântânile și a luat resursele de hrană','A cerut ajutorul Ungariei','A plătit tribut'], ans:1},
+  {type:'open', q:'Cine a fost fiul lui Iancu de Hunedoara?', ans:'matei corvin', hints:['Matei Corvin']},
+  {type:'mc', q:'Împotriva cui a câștigat Iancu Bătălia de la Belgrad (1456)?', opts:['Tatari','Cruciaților','Otomanilor','Regelui Ungariei'], ans:2},
+  {type:'mc', q:'Pe cine l-a înfrânt Ștefan cel Mare la Bătălia de la Baia?', opts:['Sultanul otoman','Tătarii','Regele Ungariei Matei Corvin','Basarab cel Tânăr'], ans:2},
+  {type:'open', q:'Ce mănăstire a ctitorit Ștefan cel Mare, unică în lume pentru culoarea albastră?', ans:'voronet', hints:['Mănăstirea Voroneț']},
+  {type:'mc', q:'În ce bătălie a fost înfrânt Ștefan cel Mare de otomani?', opts:['Bătălia de la Vaslui','Bătălia de la Baia','Bătălia de la Valea Albă','Bătălia de la Scheia'], ans:2},
+  {type:'open', q:'În ce an a intrat Mihai Viteazul în Liga Sfântă Creștină?', ans:'1594', hints:['1594']},
+  {type:'mc', q:'Împotriva cui a câștigat Mihai Viteazul bătălia de la Selimbăr (1599)?', opts:['Sultanul otoman','Andrei Bathory','Ieremia Movilă','Sigismund Bathory'], ans:1},
+  {type:'open', q:'Ce a făcut Mihai Viteazul în Moldova în 1600?', ans:'l-a inlaturat pe ieremia movila', hints:['L-a înlăturat pe Ieremia Movilă de pe tron']},
+],
+// ── TEST 4 ──
+[
+  {type:'mc', q:'Ce a inclus Tratatul de Pace din 1415 al lui Mircea cu Mahomed I?', opts:['Cedarea Transilvaniei','Cedarea Dobrogei + tribut 3.000 monede/an','Cedarea Moldovei','Cedarea Olteniei'], ans:1},
+  {type:'open', q:'Câți ani a durat a doua domnie a lui Mircea cel Bătrân?', ans:'21', hints:['21 ani (1397–1418)']},
+  {type:'mc', q:'Cum se numea nepotul lui Mircea cel Bătrân, pentru care i s-a dat supranumele „cel Bătrân"?', opts:['Vlad Țepeș','Mircea al II-lea','Vlad al II-lea','Radu cel Frumos'], ans:1},
+  {type:'mc', q:'Ce relație de rudenie aveau Vlad Țepeș și Ștefan cel Mare?', opts:['Frați','Verișori primari','Unchi-nepot','Tată-fiu'], ans:1},
+  {type:'open', q:'La ce cetate au fost forțați boierii tineri de Vlad Țepeș să meargă pe jos 100 km să reconstruiască zidurile?', ans:'poenari', hints:['Cetatea Poenari']},
+  {type:'mc', q:'Ce funcție a deținut Iancu de Hunedoara între 1446–1453?', opts:['Rege al Ungariei','Voievod al Transilvaniei','Înlocuitor al Regelui Ungariei','Domn al Moldovei'], ans:2},
+  {type:'open', q:'Pe ce dată a murit Iancu de Hunedoara?', ans:'11 august 1456', hints:['11 august 1456']},
+  {type:'mc', q:'Ce cetate era supranumită „Pintenul lui Ștefan cel Mare"?', opts:['Cetatea Sucevei','Cetatea Neamțului','Cetatea Albă','Cetatea Chilia'], ans:2},
+  {type:'open', q:'Din ce cauză a murit Ștefan cel Mare?', ans:'rana la picior', hints:['O rană la picior din lupta pentru Cetatea Chilia']},
+  {type:'mc', q:'Câte monede de aur a plătit Mihai Viteazul ca tribut pentru a fi înscăunat?', opts:['100.000','200.000','400.000','500.000'], ans:2},
+  {type:'mc', q:'Unde este statuia lui Mihai Viteazul în București?', opts:['Piața Victoriei','Piața Romană','Piața Universității','Piața Unirii'], ans:2},
+  {type:'open', q:'Când a fost asasinat Mihai Viteazul?', ans:'9 august 1601', hints:['9 august 1601']},
+  {type:'mc', q:'Unde a fost aruncat trupul lui Mihai Viteazul după asasinare?', opts:['Pe câmpia Cristișului','La Mănăstirea Dealu','La Târgoviște','La Alba Iulia'], ans:0},
+],
+// ── TEST 5 ──
+[
+  {type:'open', q:'Pe ce dată a urcat Mircea cel Bătrân pe tron pentru prima dată?', ans:'23 septembrie 1386', hints:['23 septembrie 1386']},
+  {type:'mc', q:'Ce armată a organizat Mircea cel Bătrân formată din țărani?', opts:['Oastea cea mică','Oastea cea mare','Cavaleria grea','Oastea de elită'], ans:1},
+  {type:'open', q:'Prin ce metodă pedepsea Vlad Țepeș inamicii și trădătorii?', ans:'tragerea in teapa', hints:['Tragerea în țeapă']},
+  {type:'mc', q:'Ce vârstă avea Vlad Țepeș când a urcat prima dată pe tron?', opts:['17 ani','20 ani','25 ani','30 ani'], ans:0},
+  {type:'mc', q:'Care a fost bătălia pierdută de Iancu de Hunedoara în 1448?', opts:['Bătălia de la Belgrad','Bătălia de pe Ialomița','Bătălia de la Kosovo','Bătălia de la Sântimbru'], ans:2},
+  {type:'open', q:'Ce a ajutat Iancu să facă pentru Bogdan al II-lea după Bătălia de la Kosovo?', ans:'sa obtina tronul moldovei', hints:['Să obțină tronul Moldovei']},
+  {type:'mc', q:'Câte ctitorii (biserici și mănăstiri) a ridicat Ștefan cel Mare?', opts:['Aproximativ 10','Aproximativ 20','Aproximativ 26','Aproximativ 40'], ans:2},
+  {type:'open', q:'Cine erau prietenii lui Ștefan cel Mare care l-au salvat la Bătălia de la Scheia?', ans:'lurice si pantece', hints:['Lurice și Pântece']},
+  {type:'mc', q:'Împotriva cui a câștigat Ștefan cel Mare Bătălia de la Lipnic?', opts:['Otomani','Tătari','Unguri','Polonezi'], ans:1},
+  {type:'open', q:'Cine a plătit tribut de 400.000 monede de aur pentru a fi înscăunat domn?', ans:'mihai viteazul', hints:['Mihai Viteazul']},
+  {type:'mc', q:'Bătălia de la Mirăslău (1600) a fost pierdută de Mihai Viteazul în fața cui?', opts:['Otomanilor','Imperiului Habsburgic','Moldovei','Polonezilor'], ans:1},
+  {type:'mc', q:'Care din bătăliile lui Mihai Viteazul a fost ultima câștigată?', opts:['Selimbăr','Călugăreni','Gurăslău','Mirăslău'], ans:2},
+  {type:'open', q:'Cum se numea mama lui Mihai Viteazul?', ans:'teodora cantacuzino', hints:['Teodora Cantacuzino']},
+],
+// ── TEST 6 ──
+[
+  {type:'mc', q:'Ce a ctitorit Mircea cel Bătrân la nordul Dunării?', opts:['Mănăstiri','Cetăți cu ziduri de apărare','Palate domnești','Școli'], ans:1},
+  {type:'open', q:'La ce bătălie din 1396 a participat Mircea cel Bătrân alături de Sigismund de Luxemburg?', ans:'nicopole', hints:['Bătălia de la Nicopole']},
+  {type:'mc', q:'Ce relație de familie aveau Vlad Țepeș și Mircea cel Bătrân?', opts:['Tată-fiu','Bunic-nepot','Unchi-nepot','Frați'], ans:1},
+  {type:'open', q:'În ce an și-a recuperat Vlad Țepeș tronul a doua oară cu ajutorul lui Ștefan cel Mare?', ans:'1475', hints:['1475']},
+  {type:'mc', q:'Ce i-a dăruit Regele Sigismund lui Iancu de Hunedoara în 1409?', opts:['Coroana Ungariei','Castelul Huniazilar din Hunedoara','Armata regală','Titlul de rege'], ans:1},
+  {type:'mc', q:'Împotriva cui a câștigat Iancu Bătălia de pe Ialomița (1442)?', opts:['Tătarilor','Cruciaților','Polonezilor','Otomanilor'], ans:3},
+  {type:'open', q:'Cu cine l-a confundat Iancu de Hunedoara pe Bogdan al II-lea?', ans:'varul sau', hints:['Era vărul său']},
+  {type:'mc', q:'Ce a descris Ștefan cel Mare drept cea mai lungă domnie neîntreruptă din Evul Mediu?', opts:['35 ani','47 ani','52 ani','60 ani'], ans:1},
+  {type:'open', q:'În ce an a ctitorit Ștefan cel Mare Mănăstirea Putna?', ans:'1469', hints:['1469']},
+  {type:'mc', q:'Cum se numea tatăl lui Ștefan cel Mare?', opts:['Petru Aron','Bogdan al II-lea','Alexandru cel Bun','Mircea al II-lea'], ans:1},
+  {type:'open', q:'Ce cetăți turcești de la Dunăre a atacat Mihai Viteazul din 1594?', ans:'giurgiu turnu harsova', hints:['Giurgiu, Turnu, Hârșova']},
+  {type:'mc', q:'Cine a preluat tronul Țării Românești înaintea ultimei bătălii a lui Mihai?', opts:['Ieremia Movilă','Simion Movilă','Andrei Bathory','Giorgio Basta'], ans:1},
+  {type:'open', q:'Cum se numea generalul care a ordonat uciderea lui Mihai Viteazul?', ans:'giorgio basta', hints:['Giorgio Basta']},
+],
+// ── TEST 7 ──
+[
+  {type:'open', q:'Câți ani a trăit Mircea cel Bătrân?', ans:'63', hints:['63 de ani']},
+  {type:'mc', q:'Ce fel de conducător a fost Mircea cel Bătrân conform lecției?', opts:['Crud și nedrept','Curajos, simplu, calculat, strategic','Laș și fricos','Necinstit'], ans:1},
+  {type:'mc', q:'Câți ani a trăit Vlad Țepeș?', opts:['40','45','50','55'], ans:1},
+  {type:'open', q:'Cu cine a încheiat alianță Vlad Țepeș în 1459 împotriva otomanilor?', ans:'matei corvin', hints:['Matei Corvin (regele Ungariei)']},
+  {type:'mc', q:'Câți ani a trăit Iancu de Hunedoara?', opts:['40','45','49','55'], ans:2},
+  {type:'open', q:'Care a fost bătălia câștigată de Iancu de Hunedoara în septembrie 1442?', ans:'ialomita', hints:['Bătălia de pe Ialomița']},
+  {type:'mc', q:'Împotriva cui a câștigat Ștefan cel Mare la Bătălia de la Râmnic?', opts:['Otomani','Tătari','Basarab cel Tânăr din Muntenia','Regele Ungariei'], ans:2},
+  {type:'open', q:'Câți ani a trăit Ștefan cel Mare (aproximativ)?', ans:'66', hints:['Aproximativ 66 de ani (1438–1504)']},
+  {type:'mc', q:'Cu ce ajutor a urcat Ștefan cel Mare pe tronul Moldovei în 1457?', opts:['10.000 soldați','~6.000 soldați de la Vlad Țepeș','Armata otomană','Armata ungară'], ans:1},
+  {type:'mc', q:'Câți ani a trăit Mihai Viteazul?', opts:['38','40','43','50'], ans:2},
+  {type:'open', q:'Unde se află statuia lui Mihai Viteazul din București?', ans:'piata universitatii', hints:['Piața Universității']},
+  {type:'mc', q:'În ce an a intrat Mihai Viteazul în Moldova?', opts:['1598','1599','1600','1601'], ans:2},
+  {type:'open', q:'Cât timp a durat Mihai Viteazul ca domnitor al Moldovei?', ans:'mai 1600 septembrie 1600', hints:['Mai 1600 – septembrie 1600']},
+],
+// ── TEST 8 ──
+[
+  {type:'mc', q:'Ce armată era formată din soldați bine instruiți de la curtea lui Mircea?', opts:['Oastea cea mare','Oastea cea mică','Cavaleria ușoară','Garda domnească'], ans:1},
+  {type:'open', q:'Câți soldați avea sultanul Baiazid I la Bătălia de la Rovine?', ans:'40000', hints:['Aproximativ 40.000 soldați']},
+  {type:'mc', q:'Ce a inclus armata organizată de Mircea cel Bătrân?', opts:['Doar cavalerie grea','Oastea cea mare din țărani și oastea cea mică din soldați instruiți','Doar mercenari','Doar armată permanentă'], ans:1},
+  {type:'open', q:'Cum se numea primul domn al Țării Românești asasinat de Vlad Țepeș pentru a prelua tronul a doua oară?', ans:'vladislav al ii-lea', hints:['Vladislav al II-lea']},
+  {type:'mc', q:'Ce a câștigat Iancu de Hunedoara la Bătălia de la Sântimbru (18 martie 1442)?', opts:['O victorie importantă','A fost înfrânt','A fugit','A negociat pacea'], ans:1},
+  {type:'mc', q:'Mama lui Ștefan cel Mare se numea:', opts:['Teodora Cantacuzino','Doamna Oltea (Maria)','Doamna Clara','Ecaterina'], ans:1},
+  {type:'open', q:'Cum se numea inamicul capturat de Ștefan cel Mare la Bătălia de la Scheia, căruia i-a tăiat capul?', ans:'hronoda', hints:['Hronoda']},
+  {type:'mc', q:'Mănăstirea Voroneț a fost ctitorită de Ștefan cel Mare în:', opts:['1469','1478','1488','1495'], ans:2},
+  {type:'open', q:'Câte bătălii a pierdut Ștefan cel Mare din 42?', ans:'5', hints:['5 bătălii pierdute']},
+  {type:'mc', q:'La ce ligă a aderat Mihai Viteazul în 1594?', opts:['Liga Hansei','Liga Sfântă Creștină','Liga Lombarzilor','Liga Dunăreană'], ans:1},
+  {type:'open', q:'Când a fost înscăunat Mihai Viteazul ca domn al Țării Românești?', ans:'23 septembrie 1593', hints:['23 septembrie 1593']},
+  {type:'mc', q:'Bătălia de la Gurăslău a avut loc pe:', opts:['3 august 1600','3 august 1601','9 august 1601','3 mai 1601'], ans:1},
+  {type:'open', q:'Care imperiu l-a ucis pe Mihai Viteazul?', ans:'habsburgic', hints:['Imperiul Habsburgic']},
+],
+// ── TEST 9 ──
+[
+  {type:'open', q:'La ce dată a murit Mircea cel Bătrân?', ans:'1418', hints:['1418']},
+  {type:'mc', q:'Ce sector economic a dezvoltat Mircea cel Bătrân în afară de agricultură și comerț?', opts:['Industria textilă','Mineritul','Pescuitul','Metalurgia'], ans:1},
+  {type:'mc', q:'Prima domnie a lui Vlad Țepeș a fost în:', opts:['1446','1448','1450','1452'], ans:1},
+  {type:'open', q:'Unde a trimis Vlad Țepeș capul lui Vladislav al II-lea?', ans:'nu', hints:['Vlad l-a asasinat pe Vladislav, nu i-a trimis capul nicăieri — capul lui Vlad a fost trimis sultanului']},
+  {type:'mc', q:'Ce s-a întâmplat cu capul lui Vlad Țepeș după moarte?', opts:['A fost îngropat la Snagov','A fost trimis în țeapă sultanului','A fost păstrat la Curtea de Argeș','A fost aruncat în Dunăre'], ans:1},
+  {type:'open', q:'Ce funcție a deținut Iancu de Hunedoara între 1441–1446?', ans:'voievod al transilvaniei', hints:['Voievod al Transilvaniei']},
+  {type:'mc', q:'Bătălia de la Kosovo (1448) s-a terminat pentru Iancu cu:', opts:['O victorie decisivă','O înfrângere','O negociere','O retragere strategică'], ans:1},
+  {type:'mc', q:'În ce an a ctitorit Ștefan cel Mare Mănăstirea Voroneț?', opts:['1469','1478','1488','1500'], ans:2},
+  {type:'open', q:'Pe cine l-a înfrânt Ștefan cel Mare la Bătălia de la Vaslui?', ans:'imperiul otoman', hints:['Imperiul Otoman']},
+  {type:'mc', q:'Cine era Teodora Cantacuzino?', opts:['Soția lui Mihai Viteazul','Mama lui Mihai Viteazul','Fiica lui Mihai Viteazul','Sora lui Mihai Viteazul'], ans:1},
+  {type:'open', q:'Cine a fost guvernator al Transilvaniei în urma victoriei de la Selimbăr?', ans:'mihai viteazul', hints:['Mihai Viteazul']},
+  {type:'mc', q:'Pe 9 august 1601, Mihai Viteazul a fost ucis prin:', opts:['Otrăvire','Tăierea capului','Împușcare','Înecare'], ans:1},
+  {type:'open', q:'Ce cetate a atacat Iancu de Hunedoara în iulie 1456?', ans:'belgrad', hints:['Cetatea Belgradului']},
+],
+// ── TEST 10 ──
+[
+  {type:'mc', q:'Ce a plătit Mircea cel Bătrân prin Tratatul de Pace din 1415?', opts:['1.000 monede/an','2.000 monede/an','3.000 monede/an','5.000 monede/an'], ans:2},
+  {type:'open', q:'Ce a trebuit să cedeze Mircea cel Bătrân prin Tratatul de Pace din 1415?', ans:'dobrogea', hints:['Dobrogea']},
+  {type:'mc', q:'Vlad Țepeș era verișor primar cu:', opts:['Mircea cel Bătrân','Iancu de Hunedoara','Ștefan cel Mare','Mihai Viteazul'], ans:2},
+  {type:'open', q:'Câți km pe jos au trebuit să meargă boierii tineri pedepsiți de Vlad Țepeș?', ans:'100', hints:['100 km']},
+  {type:'mc', q:'Iancu de Hunedoara a primit Castelul Huniazilar de la:', opts:['Matei Corvin','Vladislav I','Sigismund de Luxemburg','Mircea cel Bătrân'], ans:2},
+  {type:'mc', q:'Bătălia de la Vaslui/Podul Înalt s-a terminat cu:', opts:['Înfrângerea lui Ștefan','Victoria lui Ștefan','Un armistițiu','Retragerea ambelor armate'], ans:1},
+  {type:'open', q:'Care cetate din Moldova era reședința principală a lui Ștefan cel Mare?', ans:'suceava', hints:['Cetatea Sucevei']},
+  {type:'mc', q:'Cetatea Albă de la Marea Neagră era supranumită:', opts:['Coroana Moldovei','Pintenul lui Ștefan cel Mare','Poarta Estului','Scutul Moldovei'], ans:1},
+  {type:'open', q:'Pe ce dată a murit Ștefan cel Mare?', ans:'2 iulie 1504', hints:['2 iulie 1504']},
+  {type:'mc', q:'Câte teritorii conducea Mihai Viteazul când a realizat Unirea în 1600?', opts:['2','3','4','5'], ans:1},
+  {type:'mc', q:'Bătălia de la Călugăreni din august 1595 a fost câștigată de:', opts:['Mihai Viteazul singur','Otomani','Mihai cu ajutorul lui Sigismund Bathory','Imperiul Habsburgic'], ans:2},
+  {type:'open', q:'Cine l-a înlăturat de pe tronul Moldovei Mihai Viteazul în 1600?', ans:'ieremia movila', hints:['Ieremia Movilă']},
+  {type:'mc', q:'Mihai Viteazul a fost guvernator al Transilvaniei din:', opts:['Octombrie 1599','Noiembrie 1599','Ianuarie 1600','Septembrie 1599'], ans:1},
+],
+// ── TEST 11 ──
+[
+  {type:'open', q:'Ce a fost Mircea cel Bătrân în privința religiei și culturii?', ans:'adept al aliantelor', hints:['Adept al alianțelor în situații de război, preocupat de cultură și biserici']},
+  {type:'mc', q:'La câți ani a murit Mircea cel Bătrân?', opts:['55','60','63','70'], ans:2},
+  {type:'mc', q:'Câte tentative de a recuceri tronul a avut Vlad Țepeș în total?', opts:['1','2','3','4'], ans:2},
+  {type:'open', q:'La ce mănăstire s-a refugiat Vlad Țepeș după ce Baiazid a reatacat?', ans:'transilvania', hints:['S-a refugiat în Transilvania, nu la o mănăstire']},
+  {type:'mc', q:'Ce rol a jucat Iancu de Hunedoara în Europa vremii sale?', opts:['Cel mai bogat rege','Unul dintre cei mai bogați nobili ai Europei','Cel mai temut general','Cel mai înțelept om'], ans:1},
+  {type:'open', q:'Ce boală a ucis-o pe Iancu de Hunedoara în august 1456?', ans:'ciuma', hints:['Ciuma']},
+  {type:'mc', q:'Ce bătălie a câștigat Ștefan cel Mare împotriva tătarilor?', opts:['Baia','Lipnic','Vaslui','Scheia'], ans:1},
+  {type:'open', q:'Câte bătălii a câștigat Ștefan cel Mare în total?', ans:'37', hints:['37 din 42']},
+  {type:'mc', q:'Mănăstirea Putna a fost ctitorită de Ștefan cel Mare în:', opts:['1457','1469','1478','1488'], ans:1},
+  {type:'open', q:'În ce an a fost înscăunat Mihai Viteazul ca domn al Țării Românești?', ans:'1593', hints:['septembrie 1593']},
+  {type:'mc', q:'Bătălia de la Selimbăr (1599) a adus lui Mihai victoria împotriva:', opts:['Otomanilor','Andrei Bathory din Transilvania','Ieremia Movilă','Sigismund Bathory'], ans:1},
+  {type:'mc', q:'Trupul lui Mihai Viteazul a fost aruncat pe:', opts:['Câmpia Dunării','Câmpia Cristișului','Câmpia Transilvaniei','Câmpia Munteniei'], ans:1},
+  {type:'open', q:'Unde a guvernat Mihai Viteazul între noiembrie 1599 și octombrie 1600?', ans:'transilvania', hints:['Transilvania']},
+],
+// ── TEST 12 ──
+[
+  {type:'mc', q:'Mircea cel Bătrân a urcat pe tron după moartea fratelui său:', opts:['Radu','Dan','Vlad','Mircea'], ans:1},
+  {type:'open', q:'Ce a folosit Mircea cel Bătrân ca teren de luptă la Rovine pentru a compensa inferioritatea numerică?', ans:'mlastina', hints:['Mlaștina de la Rovine']},
+  {type:'mc', q:'A treia domnie a lui Vlad Țepeș a durat:', opts:['Câțiva ani','Un an','Câteva luni','O lună'], ans:2},
+  {type:'open', q:'Ce a trimis Vlad Țepeș sultanului după moartea sa?', ans:'capul sau', hints:['Capul lui Vlad a fost trimis în țeapă sultanului']},
+  {type:'mc', q:'Iancu de Hunedoara era cunoscut în Țara Românească sub numele de:', opts:['Ioan Corvin','Ioan Hunyadi','Iancu de Hunedoara','Ioan cel Viteaz'], ans:2},
+  {type:'mc', q:'Ștefan cel Mare s-a născut la:', opts:['Suceava','Iași','Borzești (jud. Bacău)','Roman'], ans:2},
+  {type:'open', q:'Cum se numea petrecătorul care l-a recunoscut pe Ștefan cel Mare printre răniți la Scheia?', ans:'lurice', hints:['Lurice']},
+  {type:'mc', q:'Cetatea Chilia era deținută de Ștefan cel Mare și se afla la:', opts:['Marea Neagră','Dunăre','Prut','Siret'], ans:1},
+  {type:'open', q:'Câți ani avea Ștefan cel Mare la moarte (aproximativ)?', ans:'66', hints:['Aproximativ 66 de ani']},
+  {type:'mc', q:'Mihai Viteazul a plătit tribut pentru înscăunare Imperiului:', opts:['Otoman','Habsburgic','Rus','Polon'], ans:0},
+  {type:'open', q:'Cine l-a ajutat pe Mihai Viteazul la Bătălia de la Călugăreni (1595)?', ans:'sigismund bathory', hints:['Sigismund Bathory']},
+  {type:'mc', q:'Bătălia de la Mirăslău (septembrie 1600) a fost pierdută de Mihai în fața:', opts:['Otomanilor','Polonezilor','Imperiului Habsburgic','Moldovei'], ans:2},
+  {type:'open', q:'Câte teritorii a condus Mihai Viteazul simultan în 1600?', ans:'3', hints:['3 teritorii: Țara Românească, Moldova, Transilvania']},
+],
+// ── TEST 13 ──
+[
+  {type:'open', q:'Cum se numea frații lui Mircea cel Bătrân care a murit și i-a lăsat tronul?', ans:'dan', hints:['Dan']},
+  {type:'mc', q:'Ce a plătit Mircea cel Bătrân prin Tratatul din 1415, în afară de tribut?', opts:['A cedat Muntenia','A trimis un fiu ca garanție','A renunțat la armată','A cedat Oltenia'], ans:1},
+  {type:'mc', q:'Vlad Țepeș era fiul lui:', opts:['Mircea cel Bătrân','Vlad al II-lea','Radu cel Frumos','Dan al II-lea'], ans:1},
+  {type:'open', q:'Cu cine a semnat Vlad Țepeș o alianță în 1459 împotriva turcilor?', ans:'matei corvin', hints:['Matei Corvin']},
+  {type:'mc', q:'Iancu de Hunedoara a ajutat pe vărul său Bogdan al II-lea să obțină tronul:', opts:['Munteniei','Transilvaniei','Moldovei','Dobrogei'], ans:2},
+  {type:'open', q:'Ce titlu i-a dat Papa lui Iancu de Hunedoara pentru apărarea creștinismului?', ans:'atletul lui cristos', hints:['Atletul lui Cristos']},
+  {type:'mc', q:'Bătălia de la Scheia a fost câștigată de Ștefan cel Mare împotriva:', opts:['Tătarilor','Polonezilor','Imperiului Otoman','Ungarilor'], ans:2},
+  {type:'open', q:'Care a fost cea mai lungă domnie neîntreruptă din Evul Mediu românesc?', ans:'stefan cel mare', hints:['Domnia lui Ștefan cel Mare — 47 ani']},
+  {type:'mc', q:'Mănăstirea Voroneț este unică în lume pentru:', opts:['Mărimea ei','Pigmentul albastru al picturilor','Turnurile înalte','Vitraliile colorate'], ans:1},
+  {type:'open', q:'Cine a condus Imperiul în numele căruia a fost ucis Mihai Viteazul?', ans:'habsburgic', hints:['Imperiul Habsburgic — Giorgio Basta era generalul său']},
+  {type:'mc', q:'Mihai Viteazul a înfăptuit prima unire politică în:', opts:['1598','1599','1600','1601'], ans:2},
+  {type:'mc', q:'Capul lui Mihai Viteazul se află înmormântat la:', opts:['Mănăstirea Snagov','Mănăstirea Cozia','Mănăstirea Dealu','Mănăstirea Voroneț'], ans:2},
+  {type:'open', q:'Câți ani a durat unirea realizată de Mihai Viteazul?', ans:'4', hints:['Aproximativ 4–5 luni']},
+],
+// ── TEST 14 ──
+[
+  {type:'mc', q:'Mircea cel Bătrân a zidit Cetatea de Scaun în:', opts:['București','Curtea de Argeș','Târgoviște','Craiova'], ans:2},
+  {type:'open', q:'În ce an s-a încheiat Tratatul de Pace al lui Mircea cel Bătrân cu Mahomed I?', ans:'1415', hints:['1415']},
+  {type:'mc', q:'Ordinul Dragonului din care făcea parte tatăl lui Vlad Țepeș era o grupare:', opts:['Comercială și politică','Militară și religioasă care apăra creștinismul','Artistică și culturală','Juridică'], ans:1},
+  {type:'open', q:'Câte ani a durat a doua domnie a lui Vlad Țepeș?', ans:'6', hints:['6 ani (1456–1462)']},
+  {type:'mc', q:'Bătălia de la Belgrad (1456) a lui Iancu este considerată:', opts:['O înfrângere grea','Cea mai importantă victorie a sa','O luptă fără rezultat','O victorie mică'], ans:1},
+  {type:'open', q:'Ce județ este menționat în legătură cu Bătălia de la Sântimbru?', ans:'alba', hints:['Județul Alba']},
+  {type:'mc', q:'Ștefan cel Mare a cucerit tronul Moldovei înfrângând pe:', opts:['Petru Mușat','Petru Aron','Alexandru cel Bun','Bogdan al III-lea'], ans:1},
+  {type:'open', q:'Câte cetăți importante a întărit Ștefan cel Mare pe teritoriul Moldovei?', ans:'4', hints:['4 cetăți principale: Cetatea Albă, Chilia, Neamțului, Sucevei']},
+  {type:'mc', q:'La Bătălia de la Valea Albă, Ștefan cel Mare a luptat împotriva:', opts:['Tătarilor','Polonezilor','Otomanilor','Ungurilor'], ans:2},
+  {type:'mc', q:'Mihai Viteazul a condus Țara Românească din:', opts:['1590–1600','1593–1600','1595–1601','1592–1601'], ans:1},
+  {type:'open', q:'Ce a înfăptuit Mihai Viteazul în 1600 la Alba Iulia?', ans:'prima unire politica', hints:['Prima unire politică a celor 3 teritorii românești']},
+  {type:'mc', q:'Unde a fost ucis Mihai Viteazul?', opts:['La Târgoviște','Pe câmpia Cristișului','La Alba Iulia','La București'], ans:1},
+  {type:'open', q:'Câte luni a durat Unirea lui Mihai Viteazul?', ans:'4', hints:['Aproximativ 4–5 luni']},
+],
+// ── TEST 15 ──
+[
+  {type:'mc', q:'Ce surnom purta sultanul Baiazid I înfrânt de Mircea la Rovine?', opts:['Tunătorul','Fulgerul','Cuceritorul','Marele'], ans:1},
+  {type:'open', q:'La ce bătălie au participat Mircea cel Bătrân și Sigismund de Luxemburg în 1396?', ans:'nicopole', hints:['Bătălia de la Nicopole']},
+  {type:'mc', q:'Vlad Țepeș a urcat pe tron prima dată în:', opts:['1446','1448','1450','1452'], ans:1},
+  {type:'open', q:'La ce vârstă a urcat Vlad Țepeș prima dată pe tron?', ans:'17', hints:['17 ani']},
+  {type:'mc', q:'Ce reprezenta Ordinul Dragonului la care aparținea tatăl lui Vlad?', opts:['O alianță comercială','Un ordin militar-religios care apăra creștinismul de otomani','Un partid politic','O frăție artistică'], ans:1},
+  {type:'open', q:'Câte funcții importante a deținut Iancu de Hunedoara?', ans:'3', hints:['3: Voievod al Transilvaniei, Înlocuitor al Regelui Ungariei, Apărător al creștinismului']},
+  {type:'mc', q:'Bătălia de la Sântimbru (18 martie 1442) s-a terminat cu:', opts:['Victoria lui Iancu','Înfrângerea lui Iancu','Un armistițiu','Fuga otomanilor'], ans:1},
+  {type:'open', q:'Ce relație de rudenie aveau Ștefan cel Mare și Vlad Țepeș?', ans:'verisori primari', hints:['Verișori primari (mamele lor erau surori)']},
+  {type:'mc', q:'Bătălia de la Lipnic a lui Ștefan cel Mare a fost împotriva:', opts:['Otomani','Tătari','Unguri','Polonezi'], ans:1},
+  {type:'open', q:'Care a fost primul an al domniei lui Mihai Viteazul?', ans:'1593', hints:['1593']},
+  {type:'mc', q:'Ce a făcut Mihai Viteazul cu cetățile turcești de la Dunăre din 1594?', opts:['Le-a reconstruit','Le-a atacat și cucerit','Le-a abandonat','A negociat pace'], ans:1},
+  {type:'mc', q:'Bătălia de la Gurăslău (3 august 1601) a durat lupta pentru:', opts:['Cucerirea Transilvaniei','Recuperarea tronului Țării Românești','Unirea Moldovei','Apărarea Moldovei'], ans:1},
+  {type:'open', q:'Unde a fost asasinat Mihai Viteazul?', ans:'campul cristisului', hints:['Pe câmpia Cristișului']},
+],
+// ── TEST 16 ──
+[
+  {type:'open', q:'Câți ani a durat prima domnie a lui Mircea cel Bătrân (1386–1395)?', ans:'9', hints:['9 ani']},
+  {type:'mc', q:'Ce luptă din 1395 a demonstrat geniul militar al lui Mircea cel Bătrân?', opts:['Bătălia de la Nicopole','Bătălia de la Rovine','Bătălia de la Belgrad','Bătălia de la Kosovo'], ans:1},
+  {type:'open', q:'În ce an a recuperat Mircea cel Bătrân tronul cu ajutorul lui Sigismund de Luxemburg?', ans:'1397', hints:['1397']},
+  {type:'mc', q:'Cum a murit Vlad Țepeș?', opts:['De bătrânețe','Otrăvit','Prins de inamici și decapitat','Înnecat'], ans:2},
+  {type:'open', q:'Cu ajutorul cui a ajuns Iancu de Hunedoara voievod al Transilvaniei în 1441?', ans:'vladislav i', hints:['Vladislav I (Regele Ungariei)']},
+  {type:'mc', q:'Care fiu al lui Iancu de Hunedoara a ajuns cel mai mare rege al Ungariei?', opts:['Ladislau','Matei Corvin','Ioan','Sigismund'], ans:1},
+  {type:'open', q:'În ce an a ctitorit Ștefan cel Mare Mănăstirea Voroneț?', ans:'1488', hints:['1488']},
+  {type:'mc', q:'Ce culoare face Mănăstirea Voroneț unică în lume?', opts:['Roșu Voroneț','Albastru Voroneț','Verde Voroneț','Auriu Voroneț'], ans:1},
+  {type:'open', q:'Cine era Petru Aron, pe care Ștefan cel Mare l-a înfrânt în 1457?', ans:'cel care ucisese pe bogdan al ii-lea', hints:['Fratele vitreg al lui Bogdan al II-lea, care îl ucisese pe tatăl lui Ștefan']},
+  {type:'mc', q:'Înscăunarea lui Mihai Viteazul a avut loc la:', opts:['Târgoviște','Curtea de Argeș','București','Alba Iulia'], ans:2},
+  {type:'mc', q:'Bătălia de la Selimbăr din octombrie 1599 a deschis drumul lui Mihai spre:', opts:['București','Suceava','Alba Iulia','Târgoviște'], ans:2},
+  {type:'open', q:'Câte luni a condus Mihai Viteazul Moldova?', ans:'5', hints:['Aproximativ 5 luni (mai – septembrie 1600)']},
+  {type:'mc', q:'Ce imperiu era condus de Giorgio Basta?', opts:['Otoman','Rus','Habsburgic','Polonez'], ans:2},
+],
+// ── TEST 17 ──
+[
+  {type:'open', q:'Pe ce dată a urcat Mircea cel Bătrân pe tron?', ans:'23 septembrie 1386', hints:['23 septembrie 1386']},
+  {type:'mc', q:'Ce a contribuit Mircea cel Bătrân la economia Țării Românești?', opts:['A distrus comerțul','A dezvoltat agricultura, economia, comerțul și mineritul','A interzis comerțul cu străinii','A dus politici de izolare'], ans:1},
+  {type:'mc', q:'Care era porecla tatălui lui Vlad Țepeș?', opts:['Vlad cel Mare','Vlad Dragonul (Dracul)','Vlad cel Viteaz','Vlad Cuceritorul'], ans:1},
+  {type:'open', q:'În ce mănăstire este îngropat corpul lui Vlad Țepeș?', ans:'snagov', hints:['Mănăstirea Snagov']},
+  {type:'mc', q:'Iancu de Hunedoara a murit la:', opts:['48 ani','49 ani','50 ani','52 ani'], ans:1},
+  {type:'open', q:'Ce bătălie importantă a câștigat Iancu de Hunedoara în iulie 1456?', ans:'belgrad', hints:['Bătălia de la Belgrad']},
+  {type:'mc', q:'Câte ctitorii religioase a ridicat Ștefan cel Mare?', opts:['Aprox. 10','Aprox. 15','Aprox. 26','Aprox. 40'], ans:2},
+  {type:'open', q:'Cum se numea prietenul lui Ștefan cel Mare care l-a scos viu de pe câmpul de bătălie la Scheia?', ans:'pantece', hints:['Pântece']},
+  {type:'mc', q:'Ștefan cel Mare a murit la:', opts:['Suceava','Iași','Putna','Botoșani'], ans:0},
+  {type:'mc', q:'Câți ani a trăit Mihai Viteazul?', opts:['40','43','45','50'], ans:1},
+  {type:'open', q:'Ce i-a luat Mihai Viteazul turcilor pentru a-i înfrânge în 1595?', ans:'resursele de hrana', hints:['Resursele de hrană (și a stricat fântânile)']},
+  {type:'mc', q:'Bătălia câștigată de Mihai Viteazul împotriva lui Andrei Bathory a fost la:', opts:['Gurăslău','Mirăslău','Selimbăr','Călugăreni'], ans:2},
+  {type:'open', q:'Când a murit Mihai Viteazul?', ans:'9 august 1601', hints:['9 august 1601']},
+],
+// ── TEST 18 ──
+[
+  {type:'mc', q:'Mircea cel Bătrân a fost îngropat la Mănăstirea:', opts:['Putna','Snagov','Cozia','Dealu'], ans:2},
+  {type:'open', q:'Ce armată a organizat Mircea cel Bătrân pentru soldații instruiți de la curtea sa?', ans:'oastea cea mica', hints:['Oastea cea mică']},
+  {type:'mc', q:'Vlad Țepeș a fost domn al:', opts:['Moldovei','Transilvaniei','Țării Românești','Dobrogei'], ans:2},
+  {type:'open', q:'Cine l-a „arestat" pe Vlad Țepeș și l-a detronat?', ans:'matei corvin', hints:['Matei Corvin']},
+  {type:'mc', q:'Titlul dat lui Iancu de Hunedoara pentru apărarea creștinismului era:', opts:['Regele Cruciaților','Atletul lui Cristos','Sabia Credinței','Campionul Europei'], ans:1},
+  {type:'open', q:'Pe 2 septembrie 1442, Iancu de Hunedoara a câștigat Bătălia de pe Ialomița cu ajutorul lui cine?', ans:'basarab al ii-lea', hints:['Basarab al II-lea']},
+  {type:'mc', q:'Mama lui Ștefan cel Mare se numea Doamna Oltea, al cărei alt nume era:', opts:['Elena','Maria','Ana','Sofia'], ans:1},
+  {type:'open', q:'Ce culoare specială rezistă și în prezent la Mănăstirea Voroneț?', ans:'albastrul de voronet', hints:['Albastrul de Voroneț']},
+  {type:'mc', q:'Ștefan cel Mare a plecat din viață în:', opts:['1500','1502','1504','1506'], ans:2},
+  {type:'open', q:'Ce a facut Mihai Viteazul înainte de a deveni domn?', ans:'comerciant', hints:['A fost comerciant priceput']},
+  {type:'mc', q:'Mihai Viteazul a condus Moldova pentru:', opts:['2 luni','5 luni','1 an','2 ani'], ans:1},
+  {type:'open', q:'La ce bătălie din octombrie 1595 a câștigat Mihai Viteazul pe toate cele 3 fronturi?', ans:'bucuresti targoviste giurgiu', hints:['București, Târgoviște și Giurgiu']},
+  {type:'mc', q:'Imperiul care l-a ucis pe Mihai Viteazul se numea:', opts:['Imperiul Otoman','Imperiul Habsburgic','Imperiul Rus','Imperiul Polonez'], ans:1},
+],
+// ── TEST 19 ──
+[
+  {type:'open', q:'Câți ani a durat a doua domnie a lui Mircea cel Bătrân (1397–1418)?', ans:'21', hints:['21 de ani']},
+  {type:'mc', q:'Ce strategie a folosit Mircea la Rovine?', opts:['Atac direct frontal','A ales mlaștina ca teren de luptă','S-a retras în munți','A atacat noaptea'], ans:1},
+  {type:'mc', q:'Câți ani a durat a doua domnie a lui Vlad Țepeș (1456–1462)?', opts:['4','5','6','7'], ans:2},
+  {type:'open', q:'Ce a făcut Vlad Țepeș pentru a înfrânge armata otomană în 1462?', ans:'a stricat fantanile si a luat hrana', hints:['A stricat fântânile și a luat resursele de hrană']},
+  {type:'mc', q:'Iancu de Hunedoara era cunoscut în Ungaria sub numele de:', opts:['Ioan de Alba','Ioan Corvin Hunyadi','Ioan de Belgrad','Ioan Regele'], ans:1},
+  {type:'open', q:'Ce a câștigat Iancu de Hunedoara la Bătălia de la Belgrad?', ans:'victoria impotriva otomanilor', hints:['Victoria împotriva otomanilor (iulie 1456)']},
+  {type:'mc', q:'Petru Aron, pe care Ștefan cel Mare l-a înfrânt, era:', opts:['Fratele vitreg al lui Bogdan al II-lea','Tatăl lui Ștefan','Un general otoman','Un rege ungar'], ans:0},
+  {type:'open', q:'Ce cetate a lui Ștefan cel Mare era la Marea Neagră?', ans:'cetatea alba', hints:['Cetatea Albă']},
+  {type:'mc', q:'Bătălia de la Lipnic a lui Ștefan a fost o victorie împotriva:', opts:['Otomanilor','Ungurilor','Tătarilor','Polonezilor'], ans:2},
+  {type:'mc', q:'Mihai Viteazul a condus Guvernoratul Transilvaniei din:', opts:['Octombrie 1599 – Octombrie 1600','Noiembrie 1599 – Octombrie 1600','Septembrie 1599 – Noiembrie 1600','Ianuarie 1600 – Octombrie 1600'], ans:1},
+  {type:'open', q:'Ce moștenire a lui Mihai Viteazul poate fi văzută azi în Piața Universității din București?', ans:'statuia', hints:['Statuia lui Mihai Viteazul']},
+  {type:'mc', q:'Mihai Viteazul a murit la vârsta de:', opts:['40','43','45','50'], ans:1},
+  {type:'open', q:'Ce trei teritorii a unit Mihai Viteazul în 1600?', ans:'tara romaneasca moldova transilvania', hints:['Țara Românească, Moldova și Transilvania']},
+],
+// ── TEST 20 ──
+[
+  {type:'mc', q:'Mircea cel Bătrân a trăit:', opts:['53 ani','60 ani','63 ani','70 ani'], ans:2},
+  {type:'open', q:'Cu cine a luptat Mircea cel Bătrân la Bătălia de la Nicopole (1396)?', ans:'sigismund de luxemburg', hints:['Sigismund de Luxemburg']},
+  {type:'mc', q:'Unde este înmormântat Vlad Țepeș?', opts:['Mănăstirea Cozia','Mănăstirea Dealu','Mănăstirea Snagov','Mănăstirea Putna'], ans:2},
+  {type:'open', q:'De câte ori a urcat Vlad Țepeș pe tron?', ans:'3', hints:['De trei ori: 1448, 1456–1462, 1476']},
+  {type:'mc', q:'Iancu de Hunedoara a murit în:', opts:['1452','1454','1456','1458'], ans:2},
+  {type:'open', q:'Ce relație era între Iancu de Hunedoara și Bogdan al II-lea (tatăl lui Ștefan cel Mare)?', ans:'veri', hints:['Erau veri']},
+  {type:'mc', q:'Bătălia de la Valea Albă/Războieni a lui Ștefan s-a terminat cu:', opts:['Victorie','Înfrângere','Retragere strategică','Armistițiu'], ans:1},
+  {type:'open', q:'Care mănăstire, ctitorită de Ștefan cel Mare, rezistă astăzi cu un pigment unic în lume?', ans:'voronet', hints:['Mănăstirea Voroneț — albastrul de Voroneț']},
+  {type:'mc', q:'Ștefan cel Mare a murit în:', opts:['1500','1502','1504','1506'], ans:2},
+  {type:'open', q:'Câte cetăți turcești de la Dunăre a cucerit Mihai Viteazul din 1594?', ans:'giurgiu turnu harsova', hints:['Giurgiu, Turnu, Hârșova (și altele)']},
+  {type:'mc', q:'Prima unire politică a românilor a durat aproximativ:', opts:['1 lună','4–5 luni','1 an','2 ani'], ans:1},
+  {type:'open', q:'Unde a murit Iancu de Hunedoara și unde este înmormântat?', ans:'alba iulia', hints:['A murit de ciumă și este înmormântat la Catedrala din Alba Iulia']},
+  {type:'mc', q:'Mircea, Iancu, Vlad, Ștefan și Mihai sunt toți:', opts:['Domni ai Moldovei','Eroi medievali români','Regi ai Ungariei','Conducători otomani'], ans:1},
+],
+];
+
+// ══════════ TESTE JS ══════════
 let testQuestions = [];
 let testCurrentIdx = 0;
 let testCorrect = 0;
 let testAnswered = false;
+let currentTestNr = -1;
 
 function renderTest(key) {
-  testQuestions = [...SUBJECTS[key].teste];
+  // Reset test container to original HTML first
+  const cont = document.getElementById('test-container');
+  if (key !== 'istorie') {
+    cont.innerHTML = `<div class="empty-state"><div class="empty-icon">✏️</div><div class="empty-text">Nu e nimic aici momentan</div></div>`;
+    return;
+  }
+  // Make sure selector elements exist
+  if (!document.getElementById('test-selector-grid')) {
+    cont.innerHTML = `
+      <div class="test-selector-wrap" id="test-selector-wrap">
+        <div class="test-selector-label">Alege testul</div>
+        <div class="test-selector-grid" id="test-selector-grid"></div>
+      </div>
+      <div class="test-progress-wrap" id="test-progress-wrap" style="display:none">
+        <div class="test-progress-info">
+          <span class="test-progress-label" id="test-progress-label">Întrebarea 1 din 13</span>
+          <span class="test-progress-score" id="test-progress-score">0 corecte</span>
+        </div>
+        <div class="test-progress-bar"><div class="test-progress-fill" id="test-progress-fill" style="width:0%"></div></div>
+      </div>
+      <div id="test-q-wrap"></div>
+      <button class="test-next-btn" id="test-next-btn" onclick="nextQuestion()">Următoarea întrebare →</button>
+      <div class="test-celebration" id="test-celebration">
+        <div class="guinea-pigs">🐹🐹🐹</div>
+        <div class="celebration-title">Bravo, Ada! 🌟</div>
+        <div class="celebration-score" id="celebration-score"></div>
+        <div class="celebration-msg" id="celebration-msg"></div>
+        <button class="test-retry-btn" onclick="showTestSelector()">Alege alt test</button>
+      </div>`;
+  }
+  showTestSelector();
+}
+
+function showTestSelector() {
+  document.getElementById('test-selector-wrap').style.display = 'block';
+  document.getElementById('test-progress-wrap').style.display = 'none';
+  document.getElementById('test-q-wrap').innerHTML = '';
+  document.getElementById('test-next-btn').classList.remove('visible');
+  document.getElementById('test-celebration').classList.remove('show');
+
+  const grid = document.getElementById('test-selector-grid');
+  if (!grid) return;
+  grid.innerHTML = ALL_TESTS.map((_, i) => `
+    <button class="test-sel-btn ${i === currentTestNr ? 'active' : ''}" onclick="startTest(${i})">Test ${i+1}</button>
+  `).join('');
+}
+
+function startTest(nr) {
+  currentTestNr = nr;
+  testQuestions = [...ALL_TESTS[nr]];
   testCurrentIdx = 0;
   testCorrect = 0;
   testAnswered = false;
 
-  const cont = document.getElementById('test-container');
-  if (!testQuestions.length) {
-    cont.innerHTML = `<div class="empty-state"><div class="empty-icon">✏️</div><div class="empty-text">Nu e nimic aici momentan</div></div>`;
-    return;
-  }
-
-  // Show progress + question wrap + next btn + celebration (hidden)
-  document.getElementById('test-progress-wrap') && updateProgress();
+  document.getElementById('test-selector-wrap').style.display = 'none';
+  document.getElementById('test-progress-wrap').style.display = 'block';
   document.getElementById('test-celebration').classList.remove('show');
   document.getElementById('test-next-btn').classList.remove('visible');
+
+  // Update selector active state
+  document.querySelectorAll('.test-sel-btn').forEach((b,i) => b.classList.toggle('active', i===nr));
   showQuestion(0);
 }
 
 function updateProgress() {
   const total = testQuestions.length;
   const current = testCurrentIdx;
-  document.getElementById('test-progress-label').textContent = `Întrebarea ${Math.min(current + 1, total)} din ${total}`;
+  document.getElementById('test-progress-label').textContent = `Întrebarea ${Math.min(current+1, total)} din ${total}`;
   document.getElementById('test-progress-score').textContent = `${testCorrect} corecte`;
-  document.getElementById('test-progress-fill').style.width = `${(current / total) * 100}%`;
+  document.getElementById('test-progress-fill').style.width = `${(current/total)*100}%`;
 }
 
 function showQuestion(idx) {
   testAnswered = false;
   const q = testQuestions[idx];
   document.getElementById('test-next-btn').classList.remove('visible');
-  document.getElementById('test-q-wrap').innerHTML = `
-    <div class="test-question">
-      <div class="test-q-text">${q.q}</div>
-      <div class="test-options">
-        ${q.opts.map((o, oi) => `
-          <button class="test-option" id="topt-${oi}" onclick="answerQuestion(${oi})">${o}</button>
-        `).join('')}
-      </div>
-    </div>
-  `;
   updateProgress();
+
+  if (q.type === 'mc') {
+    document.getElementById('test-q-wrap').innerHTML = `
+      <div class="test-question">
+        <div class="test-q-text">${q.q}</div>
+        <div class="test-options">
+          ${q.opts.map((o,oi) => `<button class="test-option" id="topt-${oi}" onclick="answerMC(${oi})">${o}</button>`).join('')}
+        </div>
+      </div>`;
+  } else {
+    document.getElementById('test-q-wrap').innerHTML = `
+      <div class="test-question">
+        <div class="test-q-text">${q.q}</div>
+        <div class="open-answer-wrap">
+          <input class="open-answer-input" id="open-input" placeholder="Scrie răspunsul tău..." autocomplete="off"
+            onkeydown="if(event.key==='Enter') checkOpen()">
+          <button class="open-check-btn" onclick="checkOpen()">Verifică ✓</button>
+          <div class="open-answer-feedback" id="open-feedback"></div>
+        </div>
+      </div>`;
+    setTimeout(() => document.getElementById('open-input')?.focus(), 100);
+  }
 }
 
-function answerQuestion(oi) {
+function answerMC(oi) {
   if (testAnswered) return;
   testAnswered = true;
-
   const q = testQuestions[testCurrentIdx];
-  const opts = document.querySelectorAll('.test-option');
-  opts.forEach(o => o.disabled = true);
-
+  document.querySelectorAll('.test-option').forEach(o => o.disabled = true);
   if (oi === q.ans) {
     testCorrect++;
     document.getElementById(`topt-${oi}`).classList.add('correct');
@@ -1149,9 +1853,28 @@ function answerQuestion(oi) {
     document.getElementById(`topt-${oi}`).classList.add('wrong');
     document.getElementById(`topt-${q.ans}`).classList.add('correct');
   }
-
   document.getElementById('test-progress-score').textContent = `${testCorrect} corecte`;
+  const isLast = testCurrentIdx === testQuestions.length - 1;
+  const btn = document.getElementById('test-next-btn');
+  btn.textContent = isLast ? 'Vezi rezultatul 🎉' : 'Următoarea întrebare →';
+  btn.classList.add('visible');
+}
 
+function checkOpen() {
+  if (testAnswered) return;
+  const q = testQuestions[testCurrentIdx];
+  const input = document.getElementById('open-input');
+  const val = input.value.trim().toLowerCase().replace(/[.,\-–]/g,'').replace(/\s+/g,' ');
+  const correct = q.ans.toLowerCase().replace(/[.,\-–]/g,'').replace(/\s+/g,' ');
+  const isOk = val === correct || correct.split(' ').some(word => word.length > 3 && val.includes(word));
+  testAnswered = true;
+  input.disabled = true;
+  input.classList.add(isOk ? 'correct' : 'wrong');
+  if (isOk) testCorrect++;
+  const fb = document.getElementById('open-feedback');
+  fb.className = `open-answer-feedback show ${isOk ? 'ok' : 'nok'}`;
+  fb.textContent = isOk ? '✅ Corect! Bravo!' : `❌ Răspuns corect: ${q.hints[0]}`;
+  document.getElementById('test-progress-score').textContent = `${testCorrect} corecte`;
   const isLast = testCurrentIdx === testQuestions.length - 1;
   const btn = document.getElementById('test-next-btn');
   btn.textContent = isLast ? 'Vezi rezultatul 🎉' : 'Următoarea întrebare →';
@@ -1160,10 +1883,7 @@ function answerQuestion(oi) {
 
 function nextQuestion() {
   const isLast = testCurrentIdx === testQuestions.length - 1;
-  if (isLast) {
-    showCelebration();
-    return;
-  }
+  if (isLast) { showCelebration(); return; }
   testCurrentIdx++;
   showQuestion(testCurrentIdx);
 }
@@ -1173,26 +1893,19 @@ function showCelebration() {
   document.getElementById('test-next-btn').classList.remove('visible');
   document.getElementById('test-progress-fill').style.width = '100%';
   document.getElementById('test-progress-label').textContent = 'Test terminat!';
-
   const total = testQuestions.length;
-  const pct = Math.round((testCorrect / total) * 100);
+  const pct = Math.round((testCorrect/total)*100);
   document.getElementById('celebration-score').textContent = `${testCorrect} din ${total}`;
   document.getElementById('celebration-msg').textContent =
-    pct === 100 ? 'Perfect! Ai răspuns corect la toate! Ești campioana clasei! 🏆' :
-    pct >= 80  ? 'Foarte bine! Aproape perfect, mai puțin de antrenat!' :
-    pct >= 60  ? 'Bine! Continuă să exersezi și vei reuși!' :
-                 'Mai încearcă! Cu fiecare test ești mai bună! 💪';
+    pct===100 ? 'Perfect! Ai răspuns corect la toate! Ești campioana clasei! 🏆' :
+    pct>=80   ? 'Foarte bine! Aproape perfect!' :
+    pct>=60   ? 'Bine! Continuă să exersezi!' :
+                'Mai încearcă! Cu fiecare test ești mai bună! 💪';
   document.getElementById('test-celebration').classList.add('show');
-  document.getElementById('test-celebration').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  document.getElementById('test-celebration').scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 
-function restartTest() {
-  document.getElementById('test-celebration').classList.remove('show');
-  testCurrentIdx = 0;
-  testCorrect = 0;
-  testAnswered = false;
-  showQuestion(0);
-}
+function restartTest() { startTest(currentTestNr); }
 
 // ══════════ VIDEO ══════════
 function renderVideo(key) {
@@ -1203,16 +1916,32 @@ function renderVideo(key) {
     return;
   }
   list.innerHTML = vids.map(v => `
-    <a class="video-row" href="${v.link}" target="_blank">
+    <div class="video-row" ${v.link && v.link !== '#' ? `onclick="window.open('${v.link}','_blank')" style="cursor:pointer"` : `style="cursor:default"`}>
       <div class="video-thumb">▶️</div>
       <div class="item-info">
         <div class="item-name">${v.name}</div>
         <div class="item-meta">${v.meta}</div>
       </div>
-      <span class="item-arrow">↗</span>
-    </a>
+      <span class="item-arrow">${v.link && v.link !== '#' ? '↗' : ''}</span>
+    </div>
   `).join('');
 }
 </script>
+<!-- ══════════ FIȘĂ MODAL ══════════ -->
+<div class="fisa-overlay" id="fisa-overlay" onclick="closeFisa(event)">
+  <div class="fisa-sheet" id="fisa-sheet">
+    <div class="fisa-sheet-handle"></div>
+    <div class="fisa-sheet-header">
+      <div class="fisa-sheet-icon" id="fisa-icon"></div>
+      <div>
+        <div class="fisa-sheet-title" id="fisa-title"></div>
+        <div class="fisa-sheet-date" id="fisa-date"></div>
+      </div>
+      <button class="fisa-close" onclick="closeFisaBtn()">✕</button>
+    </div>
+    <div class="fisa-body" id="fisa-body"></div>
+  </div>
+</div>
+
 </body>
 </html>
